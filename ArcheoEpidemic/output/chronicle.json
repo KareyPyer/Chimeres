@@ -1,0 +1,147 @@
+[
+  {
+    "t": 10,
+    "type": "reformation",
+    "event": "EVT-001"
+  },
+  {
+    "t": 20,
+    "type": "myth",
+    "myth_id": "MYTH-001"
+  },
+  {
+    "t": 23,
+    "type": "oracle",
+    "event": "EVT-002"
+  },
+  {
+    "t": 33,
+    "type": "prophecy",
+    "event": "EVT-003"
+  },
+  {
+    "t": 35,
+    "type": "reformation",
+    "event": "EVT-004"
+  },
+  {
+    "t": 40,
+    "type": "myth",
+    "myth_id": "MYTH-002"
+  },
+  {
+    "t": 60,
+    "type": "myth",
+    "myth_id": "MYTH-003"
+  },
+  {
+    "t": 81,
+    "type": "censorship",
+    "event": "EVT-005"
+  },
+  {
+    "t": 99,
+    "type": "censorship",
+    "event": "EVT-006"
+  },
+  {
+    "t": 107,
+    "type": "relic",
+    "event": "EVT-007"
+  },
+  {
+    "t": 132,
+    "type": "censorship",
+    "event": "EVT-008"
+  },
+  {
+    "t": 133,
+    "type": "prophecy",
+    "event": "EVT-009"
+  },
+  {
+    "t": 139,
+    "type": "censorship",
+    "event": "EVT-010"
+  },
+  {
+    "t": 185,
+    "type": "schism",
+    "event": "EVT-011"
+  },
+  {
+    "t": 197,
+    "type": "oracle",
+    "event": "EVT-012"
+  },
+  {
+    "t": 210,
+    "type": "censorship",
+    "event": "EVT-013"
+  },
+  {
+    "t": 240,
+    "type": "oracle",
+    "event": "EVT-014"
+  },
+  {
+    "t": 301,
+    "type": "censorship",
+    "event": "EVT-015"
+  },
+  {
+    "t": 309,
+    "type": "relic",
+    "event": "EVT-016"
+  },
+  {
+    "t": 310,
+    "type": "prophecy",
+    "event": "EVT-017"
+  },
+  {
+    "t": 361,
+    "type": "oracle",
+    "event": "EVT-018"
+  },
+  {
+    "t": 363,
+    "type": "oracle",
+    "event": "EVT-019"
+  },
+  {
+    "t": 371,
+    "type": "oracle",
+    "event": "EVT-020"
+  },
+  {
+    "t": 390,
+    "type": "prophecy",
+    "event": "EVT-021"
+  },
+  {
+    "t": 393,
+    "type": "relic",
+    "event": "EVT-022"
+  },
+  {
+    "t": 403,
+    "type": "prophecy",
+    "event": "EVT-023"
+  },
+  {
+    "t": 416,
+    "type": "oracle",
+    "event": "EVT-024"
+  },
+  {
+    "t": 443,
+    "type": "relic",
+    "event": "EVT-025"
+  },
+  {
+    "t": 466,
+    "type": "prophecy",
+    "event": "EVT-026"
+  }
+]

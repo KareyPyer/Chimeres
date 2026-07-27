@@ -1,0 +1,407 @@
+[
+  {
+    "event_id": "EVT-001",
+    "event_type": "reformation",
+    "timestamp": 10,
+    "zone": "Agora_Centrale",
+    "description": "✨ RÉFORMATION : M-001 purifiée en RF-002",
+    "affected_agents": [
+      2,
+      3,
+      5
+    ],
+    "impact": {
+      "old": "M-001",
+      "new": "RF-002"
+    }
+  },
+  {
+    "event_id": "EVT-002",
+    "event_type": "oracle_whisper",
+    "timestamp": 23,
+    "zone": null,
+    "description": "🔮 ORACLE murmure : «L'avenir est stagnation...»",
+    "affected_agents": [],
+    "impact": {
+      "prediction": "stagnation",
+      "dominant_strain": "M-001"
+    }
+  },
+  {
+    "event_id": "EVT-003",
+    "event_type": "prophecy",
+    "timestamp": 33,
+    "zone": null,
+    "description": "🜃 PROPHÉTIE : «🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persi...»",
+    "affected_agents": [
+      945,
+      45,
+      56,
+      661,
+      373,
+      292,
+      215,
+      446,
+      258,
+      343,
+      632,
+      825,
+      912,
+      777,
+      465,
+      107,
+      759,
+      54,
+      948,
+      551,
+      181,
+      162,
+      805,
+      30,
+      497,
+      528,
+      119,
+      73,
+      917,
+      241
+    ],
+    "impact": {
+      "strain": "PR-004"
+    }
+  },
+  {
+    "event_id": "EVT-004",
+    "event_type": "reformation",
+    "timestamp": 35,
+    "zone": "Sanctuaire_Reclus",
+    "description": "✨ RÉFORMATION : PR-004 purifiée en RF-005",
+    "affected_agents": [
+      30,
+      45,
+      56,
+      73,
+      119,
+      162,
+      181,
+      215,
+      241,
+      292,
+      497,
+      528,
+      551,
+      661,
+      759,
+      777,
+      912,
+      917,
+      945,
+      948
+    ],
+    "impact": {
+      "old": "PR-004",
+      "new": "RF-005"
+    }
+  },
+  {
+    "event_id": "EVT-005",
+    "event_type": "censorship",
+    "timestamp": 81,
+    "zone": "Marché_Souterrain",
+    "description": "🚫 CENSURE à Marché_Souterrain : les souches ['M-001', 'RF-002', 'MV-003'] y sont bannies",
+    "affected_agents": [
+      501,
+      508
+    ],
+    "impact": {
+      "zone": "Marché_Souterrain",
+      "banned_strains": [
+        "M-001",
+        "RF-002",
+        "MV-003"
+      ]
+    }
+  },
+  {
+    "event_id": "EVT-006",
+    "event_type": "censorship",
+    "timestamp": 99,
+    "zone": "Sanctuaire_Reclus",
+    "description": "🚫 CENSURE à Sanctuaire_Reclus : les souches ['M-001', 'RF-002', 'MV-003'] y sont bannies",
+    "affected_agents": [
+      507
+    ],
+    "impact": {
+      "zone": "Sanctuaire_Reclus",
+      "banned_strains": [
+        "M-001",
+        "RF-002",
+        "MV-003"
+      ]
+    }
+  },
+  {
+    "event_id": "EVT-007",
+    "event_type": "relic_creation",
+    "timestamp": 107,
+    "zone": "Forum_Diffus",
+    "description": "📜 RELIQUE : Agent#406 préserve «🜃 PROPHÉTIE : Dans le liminal silence, s...»",
+    "affected_agents": [
+      406
+    ],
+    "impact": {
+      "relic": "REL-001"
+    }
+  },
+  {
+    "event_id": "EVT-008",
+    "event_type": "censorship",
+    "timestamp": 132,
+    "zone": "Forum_Diffus",
+    "description": "🚫 CENSURE à Forum_Diffus : les souches ['M-001', 'RF-002', 'MV-003'] y sont bannies",
+    "affected_agents": [],
+    "impact": {
+      "zone": "Forum_Diffus",
+      "banned_strains": [
+        "M-001",
+        "RF-002",
+        "MV-003"
+      ]
+    }
+  },
+  {
+    "event_id": "EVT-009",
+    "event_type": "prophecy",
+    "timestamp": 133,
+    "zone": null,
+    "description": "🜃 PROPHÉTIE : «🜃 PROPHÉTIE : Le ankh de clonage et le réseau dansent le rit...»",
+    "affected_agents": [],
+    "impact": {
+      "strain": "PR-010"
+    }
+  },
+  {
+    "event_id": "EVT-010",
+    "event_type": "censorship",
+    "timestamp": 139,
+    "zone": "Sanctuaire_Reclus",
+    "description": "🚫 CENSURE à Sanctuaire_Reclus : les souches ['M-001', 'RF-002', 'MV-003'] y sont bannies",
+    "affected_agents": [],
+    "impact": {
+      "zone": "Sanctuaire_Reclus",
+      "banned_strains": [
+        "M-001",
+        "RF-002",
+        "MV-003"
+      ]
+    }
+  },
+  {
+    "event_id": "EVT-011",
+    "event_type": "schism",
+    "timestamp": 185,
+    "zone": "Carrefour_Nomade",
+    "description": "🔱 SCHISME : La souche MV-013 se scinde. Naissance de SC-017",
+    "affected_agents": [
+      895
+    ],
+    "impact": {
+      "parent": "MV-013",
+      "child": "SC-017"
+    }
+  },
+  {
+    "event_id": "EVT-012",
+    "event_type": "oracle_whisper",
+    "timestamp": 197,
+    "zone": null,
+    "description": "🔮 ORACLE murmure : «L'avenir est stagnation...»",
+    "affected_agents": [],
+    "impact": {
+      "prediction": "stagnation",
+      "dominant_strain": null
+    }
+  },
+  {
+    "event_id": "EVT-013",
+    "event_type": "censorship",
+    "timestamp": 210,
+    "zone": "Forum_Diffus",
+    "description": "🚫 CENSURE à Forum_Diffus : les souches ['M-001', 'RF-002', 'MV-003'] y sont bannies",
+    "affected_agents": [],
+    "impact": {
+      "zone": "Forum_Diffus",
+      "banned_strains": [
+        "M-001",
+        "RF-002",
+        "MV-003"
+      ]
+    }
+  },
+  {
+    "event_id": "EVT-014",
+    "event_type": "oracle_whisper",
+    "timestamp": 240,
+    "zone": null,
+    "description": "🔮 ORACLE murmure : «L'avenir est stagnation...»",
+    "affected_agents": [],
+    "impact": {
+      "prediction": "stagnation",
+      "dominant_strain": null
+    }
+  },
+  {
+    "event_id": "EVT-015",
+    "event_type": "censorship",
+    "timestamp": 301,
+    "zone": "Sanctuaire_Reclus",
+    "description": "🚫 CENSURE à Sanctuaire_Reclus : les souches ['M-001', 'RF-002', 'MV-003'] y sont bannies",
+    "affected_agents": [],
+    "impact": {
+      "zone": "Sanctuaire_Reclus",
+      "banned_strains": [
+        "M-001",
+        "RF-002",
+        "MV-003"
+      ]
+    }
+  },
+  {
+    "event_id": "EVT-016",
+    "event_type": "relic_creation",
+    "timestamp": 309,
+    "zone": "Carrefour_Nomade",
+    "description": "📜 RELIQUE : Agent#985 préserve «🜃 PROPHÉTIE : Dans le liminal silence, s...»",
+    "affected_agents": [
+      985
+    ],
+    "impact": {
+      "relic": "REL-002"
+    }
+  },
+  {
+    "event_id": "EVT-017",
+    "event_type": "prophecy",
+    "timestamp": 310,
+    "zone": null,
+    "description": "🜃 PROPHÉTIE : «🜃 PROPHÉTIE : Que le lune brisée guide tes pas dans le déser...»",
+    "affected_agents": [
+      33,
+      855
+    ],
+    "impact": {
+      "strain": "PR-018"
+    }
+  },
+  {
+    "event_id": "EVT-018",
+    "event_type": "oracle_whisper",
+    "timestamp": 361,
+    "zone": null,
+    "description": "🔮 ORACLE murmure : «L'avenir est stagnation...»",
+    "affected_agents": [],
+    "impact": {
+      "prediction": "stagnation",
+      "dominant_strain": "MV-019"
+    }
+  },
+  {
+    "event_id": "EVT-019",
+    "event_type": "oracle_whisper",
+    "timestamp": 363,
+    "zone": null,
+    "description": "🔮 ORACLE murmure : «L'avenir est stagnation...»",
+    "affected_agents": [],
+    "impact": {
+      "prediction": "stagnation",
+      "dominant_strain": "MV-019"
+    }
+  },
+  {
+    "event_id": "EVT-020",
+    "event_type": "oracle_whisper",
+    "timestamp": 371,
+    "zone": null,
+    "description": "🔮 ORACLE murmure : «L'avenir est stagnation...»",
+    "affected_agents": [],
+    "impact": {
+      "prediction": "stagnation",
+      "dominant_strain": "MV-020"
+    }
+  },
+  {
+    "event_id": "EVT-021",
+    "event_type": "prophecy",
+    "timestamp": 390,
+    "zone": null,
+    "description": "🜃 PROPHÉTIE : «🜃 PROPHÉTIE : quantique liminal silence sacré glyphe....»",
+    "affected_agents": [],
+    "impact": {
+      "strain": "PR-021"
+    }
+  },
+  {
+    "event_id": "EVT-022",
+    "event_type": "relic_creation",
+    "timestamp": 393,
+    "zone": "Carrefour_Nomade",
+    "description": "📜 RELIQUE : Agent#323 préserve «🜃 PROPHÉTIE : Dans le liminal silence, s...»",
+    "affected_agents": [
+      323
+    ],
+    "impact": {
+      "relic": "REL-003"
+    }
+  },
+  {
+    "event_id": "EVT-023",
+    "event_type": "prophecy",
+    "timestamp": 403,
+    "zone": null,
+    "description": "🜃 PROPHÉTIE : «🜃 PROPHÉTIE : silence ancestral seuil spectral corrompu....»",
+    "affected_agents": [
+      134
+    ],
+    "impact": {
+      "strain": "PR-022"
+    }
+  },
+  {
+    "event_id": "EVT-024",
+    "event_type": "oracle_whisper",
+    "timestamp": 416,
+    "zone": null,
+    "description": "🔮 ORACLE murmure : «L'avenir est stagnation...»",
+    "affected_agents": [],
+    "impact": {
+      "prediction": "stagnation",
+      "dominant_strain": null
+    }
+  },
+  {
+    "event_id": "EVT-025",
+    "event_type": "relic_creation",
+    "timestamp": 443,
+    "zone": "Agora_Centrale",
+    "description": "📜 RELIQUE : Agent#166 préserve «🜃 PROPHÉTIE : Dans le liminal silence, s...»",
+    "affected_agents": [
+      166
+    ],
+    "impact": {
+      "relic": "REL-004"
+    }
+  },
+  {
+    "event_id": "EVT-026",
+    "event_type": "prophecy",
+    "timestamp": 466,
+    "zone": null,
+    "description": "🜃 PROPHÉTIE : «🜃 PROPHÉTIE : glitché onirique silence sacré liminal....»",
+    "affected_agents": [
+      70,
+      932
+    ],
+    "impact": {
+      "strain": "PR-023"
+    }
+  }
+]

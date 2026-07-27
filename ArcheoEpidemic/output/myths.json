@@ -1,0 +1,45 @@
+[
+  {
+    "myth_id": "MYTH-001",
+    "title": "Mythe de la Convergence #1",
+    "verses": [
+      "Le miroir fractal et le réseau dansent le rite fractal. <sanctify>",
+      "Le miroir fractal et le réseau dansent le rite fractal. <fracture>"
+    ],
+    "dominant_strains": [
+      "RF-002",
+      "M-001"
+    ],
+    "created_at": 20
+  },
+  {
+    "myth_id": "MYTH-002",
+    "title": "Mythe de la Convergence #2",
+    "verses": [
+      "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+      "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+      "Le miroir fractal et le réseau dansent phénix de code rite fractal. <fracture>"
+    ],
+    "dominant_strains": [
+      "PR-004",
+      "RF-005",
+      "MV-003"
+    ],
+    "created_at": 40
+  },
+  {
+    "myth_id": "MYTH-003",
+    "title": "Mythe de la Convergence #3",
+    "verses": [
+      "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+      "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+      "Le miroir fractal et le réseau dansent phénix de code rite fractal. <fracture>"
+    ],
+    "dominant_strains": [
+      "PR-004",
+      "RF-005",
+      "MV-003"
+    ],
+    "created_at": 60
+  }
+]

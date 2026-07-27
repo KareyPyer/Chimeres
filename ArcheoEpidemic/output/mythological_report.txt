@@ -1,0 +1,76 @@
+══════════════════════════════════════════════════════════════════════
+  📖 RAPPORT MYTHOLOGIQUE — ArcheoEpidemic Chimera v2.0
+══════════════════════════════════════════════════════════════════════
+
+Population totale : 1000 narrateurs sur 6 zones
+
+— Répartition des croyances —
+  RECEPTIVE        :    0  (  0.0%)
+  EXPOSED          :    0  (  0.0%)
+  EVANGELIST       :    0  (  0.0%)
+  SILENT_CARRIER   :    0  (  0.0%)
+  DISENCHANTED     :    0  (  0.0%)
+  OBLIVIOUS        :    0  (  0.0%)
+
+— Récits dominants —
+  Silence collectif.
+
+— Superspreaders culturels (Saints Patrons) —
+  Agent#3    guilde=Hérauts      zone=Carrefour_Nomade   transmissions=3  influence=3.0
+  Agent#4    guilde=Colporteurs  zone=Agora_Centrale     transmissions=3  influence=3.0
+  Agent#35   guilde=Scribes      zone=Carrefour_Nomade   transmissions=3  influence=3.0
+  Agent#82   guilde=Scribes      zone=Carrefour_Nomade   transmissions=3  influence=3.0
+  Agent#84   guilde=Anachorètes  zone=Carrefour_Nomade   transmissions=3  influence=3.0
+
+— Évolution narrative —
+  Souches totales : 25
+  Générations de mutation : 3
+  Intervalle sériel moyen : 3.72 pas
+
+— Reliques sacrées (4) —
+  REL-001 (préservée t=107 à Forum_Diffus)
+    Gardien : Agent#406
+    « 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persi... »
+  REL-002 (préservée t=309 à Carrefour_Nomade)
+    Gardien : Agent#985
+    « 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persi... »
+  REL-003 (préservée t=393 à Carrefour_Nomade)
+    Gardien : Agent#323
+    « 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persi... »
+  REL-004 (préservée t=443 à Agora_Centrale)
+    Gardien : Agent#166
+    « 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persi... »
+
+— Mythes fondateurs (3) —
+  MYTH-001 — « Mythe de la Convergence #1 » (t=20)
+    1. Le miroir fractal et le réseau dansent le rite fractal. <sanctify>
+    2. Le miroir fractal et le réseau dansent le rite fractal. <fracture>
+  MYTH-002 — « Mythe de la Convergence #2 » (t=40)
+    1. 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.
+    2. 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.
+    3. Le miroir fractal et le réseau dansent phénix de code rite fractal. <fracture>
+  MYTH-003 — « Mythe de la Convergence #3 » (t=60)
+    1. 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.
+    2. 🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.
+    3. Le miroir fractal et le réseau dansent phénix de code rite fractal. <fracture>
+
+— Chronique des événements (26) —
+  [t=310] 🜃 PROPHÉTIE : «🜃 PROPHÉTIE : Que le lune brisée guide tes pas dans le déser...»
+  [t=361] 🔮 ORACLE murmure : «L'avenir est stagnation...»
+  [t=363] 🔮 ORACLE murmure : «L'avenir est stagnation...»
+  [t=371] 🔮 ORACLE murmure : «L'avenir est stagnation...»
+  [t=390] 🜃 PROPHÉTIE : «🜃 PROPHÉTIE : quantique liminal silence sacré glyphe....»
+  [t=393] 📜 RELIQUE : Agent#323 préserve «🜃 PROPHÉTIE : Dans le liminal silence, s...»
+  [t=403] 🜃 PROPHÉTIE : «🜃 PROPHÉTIE : silence ancestral seuil spectral corrompu....»
+  [t=416] 🔮 ORACLE murmure : «L'avenir est stagnation...»
+  [t=443] 📜 RELIQUE : Agent#166 préserve «🜃 PROPHÉTIE : Dans le liminal silence, s...»
+  [t=466] 🜃 PROPHÉTIE : «🜃 PROPHÉTIE : glitché onirique silence sacré liminal....»
+
+— Dérive sémantique (lignées de mutation) —
+  M-001 → MV-003
+  PR-004 → MV-006, MV-007, MV-009...
+  RF-005 → MV-008, MV-011, MV-013...
+  MV-012 → MV-016
+  PR-018 → MV-019
+
+══════════════════════════════════════════════════════════════════════

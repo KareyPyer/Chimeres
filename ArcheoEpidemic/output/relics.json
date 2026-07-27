@@ -1,0 +1,30 @@
+[
+  {
+    "relic_id": "REL-001",
+    "mantra": "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+    "guardian_id": 406,
+    "zone": "Forum_Diffus",
+    "preserved_at": 107
+  },
+  {
+    "relic_id": "REL-002",
+    "mantra": "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+    "guardian_id": 985,
+    "zone": "Carrefour_Nomade",
+    "preserved_at": 309
+  },
+  {
+    "relic_id": "REL-003",
+    "mantra": "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+    "guardian_id": 323,
+    "zone": "Carrefour_Nomade",
+    "preserved_at": 393
+  },
+  {
+    "relic_id": "REL-004",
+    "mantra": "🜃 PROPHÉTIE : Dans le liminal silence, seul le silence persiste.",
+    "guardian_id": 166,
+    "zone": "Agora_Centrale",
+    "preserved_at": 443
+  }
+]

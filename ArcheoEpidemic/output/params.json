@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "pop_total": 1000,
+  "nb_zones": 8,
+  "initial_believers": 3,
+  "root_theme": "rituel",
+  "r0_base": 3.0,
+  "disenchant_rate": 0.04,
+  "oblivion_rate": 0.003,
+  "mutation_prob": 0.05,
+  "dogma_rate": 0.01,
+  "latency_period": 3.0,
+  "random_event_prob": 0.08,
+  "myth_generation_period": 20,
+  "max_myths": 3
+}
