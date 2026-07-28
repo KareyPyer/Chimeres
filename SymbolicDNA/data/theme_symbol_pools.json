@@ -1,0 +1,37 @@
+{
+  "protection": [
+    "circle", "cross", "hand", "crosshatch", "oval", "semi_circle", "asterisk",
+    "tectiform", "cupule", "wavy_line", "scalariform", "finger_fluting",
+    "quadrangle", "rectangle", "claviform", "pectiform"
+  ],
+  "voyage": [
+    "serpentiform", "circle", "open_angle", "dots_series", "wavy_line", 
+    "spiral", "zigzag", "line", "finger_fluting", "aviform",
+    "scalariform", "semi_circle", "asterisk", "cross"
+  ],
+  "rituel": [
+    "spiral", "circle", "cross", "hand", "asterisk", "tectiform", 
+    "claviform", "penniform", "aviform", "scalariform", "crosshatch",
+    "quadrangle", "oval", "serpentiform", "cupule", "pectiform"
+  ],
+  "silence": [
+    "circle", "wavy_line", "dots_series", "semi_circle", "oval", "dot", "line",
+    "finger_fluting", "rectangle", "triangle", "cupule", "spiral"
+  ],
+  "transcendance": [
+    "spiral", "asterisk", "cross", "circle", "serpentiform", "tectiform",
+    "scalariform", "claviform", "aviform", "penniform", "oval", "triangle"
+  ],
+  "guérison": [
+    "hand", "circle", "wavy_line", "dots_series", "semi_circle", "oval",
+    "cross", "triangle", "rectagle", "cupule", "line"
+  ],
+  "éveil": [
+    "asterisk", "spiral", "cross", "circle", "serpentiform", "tectiform",
+    "claviform", "aviform", "scalariform", "penniform", "open_angle"
+  ],
+  "réconciliation": [
+    "hand", "circle", "cross", "wavy_line", "semi_circle", "oval",
+    "dots_series", "line", "triangle", "rectagle"
+  ]
+}

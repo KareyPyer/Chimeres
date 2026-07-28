@@ -1,0 +1,123 @@
+{
+  "spiral": [
+    "voyage", "profondeur", "abîme", "vortex", "rêve", "spirale", "labyrinthe",
+    "évolution", "transcendance", "infini", "cycle", "ascension", "descente",
+    "mouvement", "énergie", "tourbillon", "éternité", "cheminement", "méditation",
+    "convergence", "divergence", "flux", "vibration", "harmonie"
+  ],
+  "hand": [
+    "action", "créer", "forge", "crée", "façonne", "geste", "création",
+    "protection", "bénédiction", "force", "pouvoir", "transformation",
+    "artisanat", "habileté", "toucher", "connexion", "humanité", "intervention",
+    "maîtrise", "façonnement", "modelage", "sculpture", "empreinte"
+  ],
+  "serpentiform": [
+    "voyage", "dérive", "chemin", "onde", "flux", "mouvement", "sinuosité",
+    "adaptation", "transformation", "métamorphose", "énergie", "kundalini",
+    "sagesse", "éternité", "cycle", "régénération", "fluidité", "intuition",
+    "connaissance", "guérison", "transition", "passage", "courbe"
+  ],
+  "tectiform": [
+    "temple", "sanctuaire", "abri", "protection", "autel", "sacré", "habitat",
+    "refuge", "enceinte", "demeure", "coque", "carapace", "structure",
+    "architecture", "fondation", "pilier", "cocon", "matrice", "origine",
+    "berceau", "havre", "repaire", "citadelle"
+  ],
+  "cross": [
+    "protection", "garde", "bouclier", "sacré", "équilibre", "union",
+    "connexion", "interface", "jonction", "croisée", "choix", "destin",
+    "sacrifice", "rédemption", "transcendance", "équilibre", "harmonie",
+    "rencontre", "échange", "transition", "portail", "pivot", "nœud"
+  ],
+  "wavy_line": [
+    "silence", "souffle", "calme", "onde", "fluidité", "flexibilité",
+    "adaptation", "rythme", "vague", "vibration", "respiration", "pulsation",
+    "mouvement", "harmonie", "tranquillité", "sérénité", "méditation",
+    "écoute", "réceptivité", "courant", "marée", "flux", "énergie"
+  ],
+  "asterisk": [
+    "rituel", "invocation", "sacré", "signal", "étoile", "guidance",
+    "direction", "orientation", "référence", "connexion", "multidimension",
+    "exploration", "découverte", "révélation", "illumination", "point",
+    "centre", "origine", "rayonnement", "éclat", "brillance", "phare"
+  ],
+  "dots_series": [
+    "mémoire", "poussière", "cendre", "trace", "empreinte", "cheminement",
+    "jalon", "étape", "cycle", "rythme", "succession", "collection",
+    "constellation", "alignement", "connexion", "réseau", "points",
+    "séquences", "motif", "grain", "particule", "quantum", "empreinte"
+  ],
+  "claviform": [
+    "rite", "cérémonie", "invocation", "sceptre", "autorité", "pouvoir",
+    "clé", "accès", "passage", "déverrouillage", "maîtrise", "contrôle",
+    "commande", "gouvernement", "direction", "guide", "souveraineté",
+    "noblesse", "prestige", "influence", "canal", "instrument", "outil"
+  ],
+  "circle": [
+    "unité", "cycle", "protection", "totalité", "éternité", "perfection",
+    "harmonie", "infini", "roue", "complet", "intégral", "continu",
+    "répétition", "retour", "achèvement", "plénitude", "cercle",
+    "enceinte", "limite", "horizon", "réconciliation", "unification"
+  ],
+  "penniform": [
+    "plume", "envol", "légèreté", "élévation", "écriture", "communication",
+    "message", "quiétude", "paix", "vol", "liberté", "protection",
+    "bénédiction", "grâce", "beauté", "inspiration", "création",
+    "expression", "art", "poésie", "élégance", "pureté", "lumière"
+  ],
+  "aviform": [
+    "oiseau", "vol", "liberté", "voyage", "transcendance", "hauteur",
+    "vision", "perspective", "élégance", "grâce", "ascension", "rapidité",
+    "migration", "transition", "passage", "loin", "horizon", "ciel",
+    "infini", "légèreté", "espace", "expansion", "exploration"
+  ],
+  "scalariform": [
+    "échelle", "gradation", "progression", "hiérarchie", "évolution",
+    "montée", "descente", "niveau", "étape", "transition", "métamorphose",
+    "transformation", "élévation", "approfondissement", "échelon",
+    "succession", "développement", "croissance", "évolution", "cycle",
+    "enseignement", "apprentissage", "ascension"
+  ],
+  "finger_fluting": [
+    "trace", "empreinte", "passage", "mémoire", "geste", "doigt",
+    "interaction", "marque", "signature", "contact", "impression",
+    "création", "artistique", "humain", "original", "unique",
+    "témoignage", "présence", "action", "toucher", "connexion", "passé"
+  ],
+  "cupule": [
+    "coupe", "réceptacle", "accueil", "réception", "contenance", "culte",
+    "offrande", "sacrifice", "mémoire", "ancestral", "authentique",
+    "originaire", "profond", "intime", "essentiel", "nourriture",
+    "élixir", "source", "réserve", "trésor", "protection", "soin"
+  ],
+  "zigzag": [
+    "énergie", "foudre", "éclair", "dynamique", "rupture", "changement",
+    "alternance", "contraste", "surprise", "spontanéité", "vivacité",
+    "tension", "créativité", "innovation", "révolution", "excitation",
+    "vibration", "pulsation", "rythme", "cassure", "élan", "force"
+  ],
+  "open_angle": [
+    "ouverture", "accueil", "opportunité", "expansion", "possibilité",
+    "choix", "liberté", "horizon", "espérance", "avenir", "découverte",
+    "exploration", "invitation", "révélation", "percée", "audace",
+    "avant", "progrès", "éveil", "vision", "clairvoyance", "optimisme"
+  ],
+  "quadrangle": [
+    "solidité", "stabilité", "équilibre", "structure", "fondation",
+    "base", "carré", "sécurité", "ordre", "organisation", "méthode",
+    "système", "harmonie", "géométrie", "rigueur", "intégrité",
+    "fiabilité", "ancrage", "pragmatisme", "construction", "œuvre"
+  ],
+  "triangle": [
+    "ascension", "pyramide", "hiérarchie", "créativité", "équilibre",
+    "union", "opposition", "résolution", "force", "structure",
+    "émanation", "manifestation", "intention", "tension", "harmonie",
+    "croissance", "évolution", "volonté", "pouvoir", "trinité"
+  ],
+  "rectangle": [
+    "ordre", "structure", "fondation", "cadre", "limite", "délimitation",
+    "organisation", "sécurité", "clarté", "méthode", "système",
+    "harmonie", "proportion", "mesure", "rigueur", "stabilité",
+    "confiance", "droiture", "pragmatisme", "ancrage", "construction"
+  ]
+}

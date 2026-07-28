@@ -1,0 +1,70 @@
+{
+  "protection": [
+    "Que le {Symbole} {Action} ton {Nom} du {Défaut}! {oniric}",
+    "Ô {Adjectif} {Nom}, sois protégé par le {Symbole} ancien.",
+    "Le {Symbole} consume les ombres. {oniric}",
+    "Que {Nom} soit gardé du {Défaut} par le {Symbole}. {oniric}",
+    "Le {Symbole} {Action} les ténèbres autour de ton {Nom}. {oniric}",
+    "Par le {Symbole}, ton {Nom} est {Adjectif} et inviolable. {oniric}",
+    "Le {Défaut} s'efface devant le {Symbole} de protection. {oniric}"
+  ],
+  "voyage": [
+    "Dans le {Paysage}, que ton {Nom} trouve la voie. {oniric}",
+    "Que le {Symbole} guide tes pas dans le désert {Adjectif}.",
+    "Rêve en {Adjectif}, voyage en {Nom}. {oniric}",
+    "Le {Nom} n'est pas perdu — il {Action} dans le {Paysage}. {oniric}",
+    "À travers le {Paysage}, le {Symbole} te mène vers {Bénéfice}. {oniric}",
+    "Ton {Nom} {Action} les chemins du {Paysage} {Adjectif}. {oniric}",
+    "Le voyage {Adjectif} commence par un {Nom} et un {Symbole}. {oniric}"
+  ],
+  "rituel": [
+    "Que le {Symbole} {Action} le {Défaut} avec {Bénéfice}. {oniric}",
+    "Ô {Adjectif} {Nom}, sois {VerbeMystique} par le rite ancien.",
+    "Le silence après le {Nom} est plus fort que le marché. {oniric}",
+    "Le {Symbole} et le {Nom} dansent le rite {Adjectif}. {oniric}",
+    "Dans le {Paysage}, le {Symbole} {Action} le {Nom} vers {Bénéfice}. {oniric}",
+    "Le rite {Adjectif} {Action} le {Défaut} pour révéler {Bénéfice}. {oniric}",
+    "Par le {Symbole}, le {Nom} est {VerbeMystique} et {Adjectif}. {oniric}"
+  ],
+  "silence": [
+    "Que le {Symbole} efface le bruit. {oniric}",
+    "Dans le {Adjectif} silence, seul le {Nom} persiste.",
+    "Le {Nom} n'est pas vendu — il est transmuté en silence. {oniric}",
+    "Le {Symbole} {Action} le {Défaut} pour {Bénéfice}. {oniric}",
+    "Le silence {Adjectif} du {Paysage} {Action} le {Nom}. {oniric}",
+    "Dans l'absence de {Défaut}, le {Symbole} révèle {Bénéfice}. {oniric}",
+    "Le {Nom} trouve sa paix dans le {Symbole} du silence. {oniric}"
+  ],
+  "transcendance": [
+    "Le {Symbole} {Action} les limites du {Nom}. {oniric}",
+    "À travers le {Paysage}, le {Nom} {Action} vers {Bénéfice}. {oniric}",
+    "Le {Défaut} se dissout dans la lumière du {Symbole}. {oniric}",
+    "Ô {Nom}, sois {VerbeMystique} par le {Symbole} {Adjectif}. {oniric}",
+    "La transcendance {Adjectif} du {Nom} est {Action} par le {Symbole}. {oniric}",
+    "Dans le {Paysage}, le {Symbole} révèle {Bénéfice} au {Nom}. {oniric}",
+    "Le {Nom} {Action} les dimensions par le {Symbole} sacré. {oniric}"
+  ],
+  "guérison": [
+    "Que le {Symbole} {Action} les blessures du {Nom}. {oniric}",
+    "Le {Défaut} s'efface par la grâce du {Symbole}. {oniric}",
+    "Ô {Adjectif} {Nom}, sois guéri par le {Symbole} ancien. {oniric}",
+    "Le {Symbole} {Action} la douleur pour révéler {Bénéfice}. {oniric}",
+    "Dans le {Paysage} de la guérison, le {Nom} trouve {Bénéfice}. {oniric}",
+    "Le {Symbole} {Action} le {Défaut} et libère {Bénéfice}. {oniric}"
+  ],
+  "éveil": [
+    "Le {Symbole} {Action} l'éveil du {Nom}. {oniric}",
+    "Dans le {Paysage} {Adjectif}, le {Nom} s'éveille. {oniric}",
+    "Ô {Nom}, sois {VerbeMystique} par la lumière du {Symbole}. {oniric}",
+    "Le {Défaut} se dissipe devant l'éveil du {Symbole}. {oniric}",
+    "Le {Symbole} {Action} la conscience pour révéler {Bénéfice}. {oniric}",
+    "L'éveil {Adjectif} du {Nom} est {Action} par le {Symbole}. {oniric}"
+  ],
+  "réconciliation": [
+    "Que le {Symbole} {Action} les cœurs divisés. {oniric}",
+    "Le {Défaut} s'efface par la réconciliation du {Symbole}. {oniric}",
+    "Ô {Adjectif} {Nom}, sois réconcilié par le {Symbole}. {oniric}",
+    "Le {Symbole} {Action} les différences pour révéler {Bénéfice}. {oniric}",
+    "Dans le {Paysage} de la réconciliation, le {Nom} trouve paix. {oniric}"
+  ]
+}
