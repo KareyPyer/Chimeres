@@ -1,0 +1,68 @@
+{
+  "organism": {
+    "species": "Glyphosophus",
+    "breed": "Mutant_Mutant_Mutant_Mutant_Mutant_Symbolicus_72_32_62_98_52",
+    "generation": 5,
+    "strands": [
+      {
+        "seed": 0.7443082084442333,
+        "generation": 5,
+        "parent_id": "9de8b420",
+        "genetic_fingerprint": "8a190e56",
+        "mutation_rate": 0.15,
+        "theme": "rituel",
+        "glyph_symbol": "hand",
+        "color": "#ffff88",
+        "scale": 0.5409501777316882,
+        "complexity": 0.40261400098903244,
+        "symmetry": 9,
+        "glitch_factor": 0.06624434825284675,
+        "entropy_level": 0.3730454706554919,
+        "keyword_sequence": [
+          "phénix de code",
+          "légion",
+          "suture",
+          "merkaba de matrices",
+          "spirale"
+        ],
+        "mantra_template": "Le {Symbole} et le {Nom} dansent le rite {Adjectif}. {oniric}",
+        "oniric_tag": "<static>",
+        "emotion_vector": {
+          "peur": 0.17473428166075772,
+          "joie": 0.3591317107128147,
+          "mystere": 0.1832567697676306,
+          "colere": 0.1987872901093751,
+          "extase": 0.03469718702680772,
+          "silence": 0.049392760722613976
+        }
+      }
+    ],
+    "creativity": 2.5473707387241653,
+    "self_awareness": 0.5200845247405494,
+    "aesthetic_sense": 1.3605438749671082,
+    "chaos_affinity": 0.6571654031597556,
+    "narrative_coherence": 1.065668100126878,
+    "mutation_susceptibility": 0.103570966005754,
+    "created_at": "2026-07-28T10:18:43.327317",
+    "creator": "Descendant de 9a9c67b126",
+    "organism_id": "12dd498f99"
+  },
+  "fitness": 0.6804887907203154,
+  "artefacts": [
+    {
+      "mantra": "Le phénix de code et le légion dansent le rite thaumaturge. <static>",
+      "theme": "rituel",
+      "aesthetic_score": 0.4623004993282017,
+      "fitness_breakdown": {
+        "linguistic_fitness": 0.467,
+        "visual_text_coherence": 0.3,
+        "visual_score": 0.683,
+        "has_rhyme": false,
+        "has_alliteration": false,
+        "oniric_tag": "<static>",
+        "dominant_emotion": "joie"
+      },
+      "timestamp": "2026-07-28T10:18:44.837844"
+    }
+  ]
+}

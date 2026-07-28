@@ -1,0 +1,21 @@
+Create a mystical, symbolic artwork.
+
+VISUAL ELEMENTS:
+- A central hand symbol, dominant and luminous.
+- Colors inspired by #ffff88 with subtle gradients and glitch effects.
+- Background: dark, cosmic, with faint geometric patterns.
+- Complexity: 0.40, symmetry: 9-fold.
+- If glitch is present: broken pixels, chromatic aberration, data corruption.
+
+TEXTUAL ELEMENTS:
+- The mantra inscribed around or within the symbol: "Le phénix de code et le légion dansent le rite thaumaturge. <static>"
+- Oniric tag: <static>
+
+HARMONIOUS FUSION:
+- The overall mood is bright, euphoric, radiant.
+- The image should feel like an illuminated manuscript from a cyberpunk monastery.
+- Style: bright, euphoric, radiant, photorealistic, cinematic, 8k, detailed, mystical, symbolic, dramatic lighting, high contrast.
+- Composition: the symbol at the center, the text flowing around it like a halo or script.
+- Resolution: 1024x1024, high detail.
+
+Aesthetic score target: 0.68/1.0.
