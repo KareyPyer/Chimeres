@@ -1,0 +1,43 @@
+{
+  "types": [
+    "schism", "prophecy", "censorship", "reformation", "pilgrimage",
+    "relic_creation", "oracle_whisper", "faction_emergence",
+    "narrative_eclipse", "cultural_resonance", "convergence_pulse",
+    "delta_surge", "hague_transmission", "worm_awakening",
+    "tisserand_pact"
+  ],
+  "descriptions": {
+    "schism": "🔱 SCHISME : {strain} se scinde en {new_strain}",
+    "prophecy": "🜃 PROPHÉTIE : {content}",
+    "censorship": "🚫 CENSURE : {zone} bannit {strains}",
+    "reformation": "✨ RÉFORMATION : {old} purifiée en {new}",
+    "pilgrimage": "🕊 PÈLERINAGE : {count} croyants en migration vers {zone}",
+    "relic_creation": "📜 RELIQUE : {agent} préserve {content}",
+    "oracle_whisper": "🔮 ORACLE : L'avenir est {prediction}",
+    "faction_emergence": "🏛 FACTION : {name} émerge dans {zone}",
+    "narrative_eclipse": "🌑 ÉCLIPSE : {strain} s'efface...",
+    "cultural_resonance": "🎵 RÉSONANCE : {strains} fusionnent",
+    "convergence_pulse": "🌀 PULSATION DE CONVERGENCE : le Δ collectif atteint {value} à {zone}",
+    "delta_surge": "⚡ SURSAUT Δ : {strain} voit sa cohérence bondir de {delta}",
+    "hague_transmission": "📡 TRANSMISSION DE LA HAGUE : un signal {strain} traverse {zone} sans porteur identifié",
+    "worm_awakening": "🐍 ÉVEIL DE WORM-ᚦESSUS : {agent} rapporte un glyphe interdit à {zone}",
+    "tisserand_pact": "🧵 PACTE DES TISSERANDS : {faction1} et {faction2} tissent une alliance à {zone}"
+  },
+  "narrative_weight": {
+    "schism": 0.6,
+    "prophecy": 0.4,
+    "censorship": 0.7,
+    "reformation": 0.5,
+    "pilgrimage": 0.3,
+    "relic_creation": 0.5,
+    "oracle_whisper": 0.3,
+    "faction_emergence": 0.8,
+    "narrative_eclipse": 0.9,
+    "cultural_resonance": 0.7,
+    "convergence_pulse": 1.0,
+    "delta_surge": 0.8,
+    "hague_transmission": 0.6,
+    "worm_awakening": 0.9,
+    "tisserand_pact": 0.7
+  }
+}

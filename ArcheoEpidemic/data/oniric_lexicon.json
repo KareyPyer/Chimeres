@@ -1,0 +1,84 @@
+{
+  "Adjectif": [
+    "fractal", "quantique", "cryptique", "spectral", "liminal", "onirique",
+    "corrompu", "sacré", "glitché", "ancestral", "éthéré", "cybernétique",
+    "holographique", "syndical", "apocryphe", "delta-modulé", "tissé",
+    "sino-sanaïte", "biocodé", "posthumain", "mnémonique", "analogique",
+    "hague-natif", "runique", "convergent", "sans-marque", "profond",
+    "ossifié", "abyssal", "reclus", "colporteur", "friable", "salin",
+    "brumeux", "océanique", "caillouté", "granitique", "immergé"
+  ],
+  "Nom": [
+    "signal", "silence", "glyphe", "écho", "seuil", "récit", "mantra",
+    "spectre", "réseau", "songe", "oracle", "vérité", "mémoire", "fracture",
+    "résonance", "noyau", "brume", "empreinte", "delta", "tissage",
+    "ombilic", "codex", "ver", "plasma", "marée", "ressac", "cairn",
+    "sédiment", "lichen", "estran", "fanal", "cordage", "reliquaire",
+    "palimpseste", "phonème", "nébuleuse", "polder"
+  ],
+  "Action": [
+    "implose", "exalte", "désintègre", "fusionne", "résonne", "désagrège",
+    "sature", "décode", "invoque", "sublime", "dévore", "réfracte",
+    "cristallise", "diffuse", "condense", "synchronise", "amplifie",
+    "hack", "insère", "mute", "convoque", "infecte", "vaccine",
+    "psalmodie", "prophétise", "transfigure", "absorbe", "révèle",
+    "dissout", "éclaire", "tisse", "module", "décohère", "s'effondre",
+    "s'échoue", "se sédimente", "germine", "s'érode", "reflue", "s'ancre"
+  ],
+  "Bénéfice": [
+    "la clarté", "le silence", "l'oubli", "la vérité brûlante", "l'éveil",
+    "l'unité", "l'extase quantique", "la fusion des âmes", "l'illumination",
+    "la synchronicité totale", "la communion", "la mémoire collective",
+    "la révélation", "la transcendance pure", "l'équilibre parfait",
+    "la sagesse infinie", "la cohérence Δ", "le tissage retrouvé",
+    "l'ancrage granitique", "la marée intérieure", "le repos des reclus",
+    "la lucidité du polder"
+  ],
+  "Défaut": [
+    "le bruit", "la trahison", "le compromis", "l'oubli numérique",
+    "le mensonge", "l'entropie", "la dissonance", "la corruption",
+    "la fragmentation", "la désorientation", "le virus mental",
+    "la psychose cybernétique", "l'effondrement cognitif", "la vacuité",
+    "le chaos", "la stérilité narrative", "la décohérence Δ",
+    "la rupture du tissu", "l'ensablement", "le sel qui ronge",
+    "la brume sans fanal", "l'écho sans source"
+  ],
+  "Paysage": [
+    "désert du no-signal", "marché noir de Lagos", "nuage quantique",
+    "cimetière de data", "temple de silicium", "catacombes de code",
+    "archipel des serveurs oubliés", "cathédrale de circuits imprimés",
+    "nécropole des IA défuntes", "bibliothèque de Babel numérique",
+    "plaine des échos", "forêt de cristal", "abysse de données",
+    "citadelle des ombres", "jardin des paradoxes", "falaises de Vauville",
+    "marais du Cotentin", "ruines de Caen-Profonde", "bunker du Mur de l'Atlantique",
+    "tourbière quantique", "phare éteint de la Hague", "polder englouti",
+    "landes radioactives de la Pointe", "estran des naufrages numériques",
+    "carrière de granit fractal", "havre des Sans-Marques"
+  ],
+  "VerbeMystique": [
+    "consume", "efface", "encrypte", "réveille", "transmute", "dissout",
+    "illumine", "recodifie", "absout", "exalte", "sublime", "canalise",
+    "révèle", "manifeste", "prophétise", "sanctifie", "purifie",
+    "transcende", "éveille", "libère", "delta-module", "tisse le voile",
+    "ancre au granit", "sédimente", "reflue vers l'origine"
+  ],
+  "Symbole": [
+    "lune brisée", "serpent de fibre", "cœur en silicium", "miroir fractal",
+    "étoile noire", "anneau de données", "phénix de code", "lotus quantique",
+    "œil de Schrödinger", "spirale d'ADN synthétique",
+    "ouroboros de feedback loop", "ankh de clonage", "main de glitch",
+    "calice de données", "épée de lumière", "bouclier de silence",
+    "ver runique WORM-ᚦESSUS", "spirale delta", "ancre de la Hague",
+    "boussole du Codex Stein", "sceau d'OMEGA-REFLECT", "rune Dashem44",
+    "galet de Vauville", "fil des Tisserands de Brume"
+  ],
+  "oniric_tags": [
+    "<burn>", "<rain>", "<shadow>", "<static>", "<void>", "<glitch>",
+    "<pulse>", "<echo>", "<fracture>", "<abyss>", "<neon>", "<vortex>",
+    "<whisper>", "<overload>", "<decay>", "<surge>", "<rift>", "<mirage>",
+    "<reboot>", "<corrupt>", "<loop>", "<merge>", "<awaken>", "<dream>",
+    "<eclipse>", "<invoke>", "<fuse>", "<sanctify>", "<prophesy>", "<sigil>",
+    "<flux>", "<null>", "<prime>", "<shard>", "<delta>", "<mtt>", "<hague>",
+    "<caen>", "<tissage>", "<sinarabi>", "<worm>", "<convergence>"
+  ]
+}

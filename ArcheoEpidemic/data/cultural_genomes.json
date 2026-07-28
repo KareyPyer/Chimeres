@@ -1,0 +1,35 @@
+{
+  "species": [
+    "Narrateur", "Méméticien", "Oracle", "Iconoclaste", "Créateur de mythes",
+    "Tisserand", "Delta-Codeur", "Glyphomancien", "Reclus de la Hague",
+    "Sans-Marque"
+  ],
+  "breeds": [
+    "Standard", "Résilient", "Charismatique", "Mystique", "Analytique",
+    "Prophétique", "Fractal", "Sino-Sanaïte", "Hague-Natif",
+    "Biocodéen", "Analogique-Pur"
+  ],
+  "glyph_symbols": [
+    "spiral", "circle", "cross", "serpentiform", "hand", "asterisk",
+    "wavy_line", "triangle", "hexagon", "pentagram", "infinity",
+    "spiral_galaxy", "rune_worm", "delta_glyph", "polder_sigil"
+  ],
+  "guilds": [
+    "Scribes", "Hérauts", "Anachorètes", "Colporteurs", "Iconoclastes",
+    "Mystiques", "Fractaliens", "Néantistes", "Syntagmatiques",
+    "Tisserands_de_Brume", "Sans-Marques"
+  ],
+  "guild_lore": {
+    "Scribes": "Consignent chaque mutation de mantra dans des palimpsestes numériques ; gardiens du Codex Stein.",
+    "Hérauts": "Portent les récits d'Agora en Agora, souvent premiers évangélistes d'une souche.",
+    "Anachorètes": "Isolés volontaires des marais du Cotentin, incubateurs de porteurs silencieux.",
+    "Colporteurs": "Nomades commerçant mantras et reliques entre zones, forte mobilité.",
+    "Iconoclastes": "Brisent les mythes dominants, précipitent schismes et éclipses narratives.",
+    "Mystiques": "Cherchent la fusion des récits, prompts à la résonance culturelle.",
+    "Fractaliens": "Adeptes du Modèle du Temps Tissé, sensibles à la gravité narrative.",
+    "Néantistes": "Cultivent l'oubli comme discipline, hauts taux de désenchantement.",
+    "Syntagmatiques": "Analystes froids du langage, forte résistance au dogme.",
+    "Tisserands_de_Brume": "Faction historique du Corpus Vauvillensis, tissent alliances entre souches rivales.",
+    "Sans-Marques": "Sans allégeance déclarée, résistants à toute capture mémétique durable."
+  }
+}

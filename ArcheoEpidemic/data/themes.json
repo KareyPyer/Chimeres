@@ -1,0 +1,90 @@
+{
+  "protection": [
+    "Que le {Symbole} {Action} ton {Nom} du {Défaut}! {oniric}",
+    "Ô {Adjectif} {Nom}, sois protégé par le {Symbole} ancien.",
+    "Le {Symbole} consume les ombres du Mur de l'Atlantique. {oniric}",
+    "Par le {Symbole}, que le {Défaut} se dissipe comme la brume du Cotentin.",
+    "Le {Adjectif} {Nom} trouve refuge dans le {Symbole} éternel.",
+    "Sept fois le granit protège, sept fois le {Symbole} veille. {oniric}"
+  ],
+  "voyage": [
+    "Dans le {Paysage}, que ton {Nom} trouve la voie. {oniric}",
+    "Que le {Symbole} guide tes pas dans le désert {Adjectif}.",
+    "Le {Nom} n'est pas perdu — il {Action} dans le {Paysage}. {oniric}",
+    "À travers le {Paysage}, le {Symbole} trace le chemin des Colporteurs.",
+    "Le voyage {Adjectif} commence par un {Nom}, s'achève à la Pointe de la Hague.",
+    "Marcheur sans carte, suis le {Symbole} jusqu'au {Paysage}. {oniric}"
+  ],
+  "rituel": [
+    "Que le {Symbole} {Action} le {Défaut} avec {Bénéfice}. {oniric}",
+    "Ô {Adjectif} {Nom}, sois {VerbeMystique} par le rite ancien.",
+    "Le {Symbole} et le {Nom} dansent le rite {Adjectif}. {oniric}",
+    "Cinq fois {Symbole}, sept fois {Nom}, l'incantation résonne dans Caen-Profonde.",
+    "Par le {VerbeMystique}, le {Défaut} devient {Bénéfice}.",
+    "Sous le sceau d'OMEGA-REFLECT, que le {Nom} {Action} enfin. {oniric}"
+  ],
+  "silence": [
+    "Que le {Symbole} efface le bruit. {oniric}",
+    "Dans le {Adjectif} silence, seul le {Nom} persiste.",
+    "Le {Symbole} {Action} le {Défaut} pour {Bénéfice}. {oniric}",
+    "Silence... le {Nom} {Action} dans l'ombre du polder englouti.",
+    "Le {Adjectif} silence révèle le {Symbole}.",
+    "Ni signal ni écho — seulement le {Nom}, {VerbeMystique} par la brume. {oniric}"
+  ],
+  "émergence": [
+    "Du {Défaut} naît le {Symbole}, porteur de {Bénéfice}.",
+    "Le {Nom} {Action} et fait émerger un {Adjectif} ordre.",
+    "Dans le chaos du {Paysage}, le {Symbole} {Action}. {oniric}",
+    "L'émergence du {Symbole} transforme le {Défaut} en {Bénéfice}.",
+    "Premier souffle du Δ : le {Nom} {Action}, la Convergence approche. {oniric}"
+  ],
+  "déclin": [
+    "Le {Symbole} s'effondre, emportant le {Nom} dans le {Défaut}.",
+    "Le {Adjectif} crépuscule consume le {Paysage}. {oniric}",
+    "Le {Nom} se délite, le {Symbole} n'est plus.",
+    "Dans le silence du {Défaut}, le {Symbole} {Action} pour la dernière fois.",
+    "Ce que le {Codex/Symbole} avait scellé, la mer du Cotentin le reprend. {oniric}"
+  ],
+  "convergence": [
+    "L'an 2077 approche : le {Symbole} {Action} vers le point Δ. {oniric}",
+    "Toutes les factions convergent — le {Nom} {Adjectif} n'a plus de camp.",
+    "Quand le {Défaut} et le {Bénéfice} se confondent, la Convergence commence. {oniric}",
+    "Le {Symbole} tisse ensemble Europe Quantique et Triangle Africain.",
+    "Rien ne reste séparé au seuil de {Bénéfice} : le {Nom} {Action}. {oniric}"
+  ],
+  "biocodéologie": [
+    "Le gène du {Nom} {Action} sous la peau {Adjectif} du CréoNeural. {oniric}",
+    "Ô chair codée, que le {Symbole} inscrive {Bénéfice} dans ton opéron.",
+    "Le corps {Adjectif} n'est qu'un {Nom} en attente de {VerbeMystique}.",
+    "Transposon et mantra : le {Symbole} {Action} la biocodéologie ancienne.",
+    "Sous la plasmide de silicium, le {Nom} {Action} et devient {Bénéfice}. {oniric}"
+  ],
+  "résistance_analogique": [
+    "Contre le {Défaut} numérique, seul le {Nom} {Adjectif} résiste. {oniric}",
+    "Les Sans-Marques {Action} sans code, sans nom, sans {Défaut}.",
+    "Le {Symbole} de papier survit là où {Bénéfice} s'effondre.",
+    "Analogique jusqu'à l'os : le {Nom} refuse le {Défaut} et {Action}. {oniric}",
+    "Pas de signal, pas de trace — seulement le {Symbole} gravé dans le granit."
+  ],
+  "tissage": [
+    "Le Modèle du Temps Tissé {Action} : {Nom} et {Symbole} ne font plus qu'un. {oniric}",
+    "Chaque fil du {Nom} {Action} la trame du réel {Adjectif}.",
+    "Δ monte, Δ descend — le {Symbole} tisse {Bénéfice} dans le vide.",
+    "Tisserands de Brume, votre {Nom} {Action} le tissu du monde. {oniric}",
+    "Ce qui est {Adjectif} se tisse, ce qui est {Défaut} se détisse."
+  ],
+  "delta_modulation": [
+    "Le coefficient Δ {Action} — {Bénéfice} ou {Défaut}, le choix reste ouvert. {oniric}",
+    "Moduler le Δ, c'est {VerbeMystique} le {Nom} lui-même.",
+    "Un {Adjectif} souffle delta-module le {Paysage} tout entier.",
+    "Δ+ {Bénéfice}, Δ- {Défaut} : le {Symbole} arbitre. {oniric}",
+    "Intention pure, Δ modulé : le {Nom} {Action} sans bruit."
+  ],
+  "sans-marques": [
+    "Sans nom, sans faction, le {Nom} {Adjectif} {Action} libre. {oniric}",
+    "Ni Europe Quantique ni Alliance Sino-Sanaïte : le {Symbole} n'appartient à personne.",
+    "Le Sans-Marque porte le {Nom} sans jamais le montrer.",
+    "Dans l'anonymat du {Paysage}, {Bénéfice} se cache. {oniric}",
+    "Aucune guilde ne réclame le {Symbole} qui {Action} dans l'ombre."
+  ]
+}
