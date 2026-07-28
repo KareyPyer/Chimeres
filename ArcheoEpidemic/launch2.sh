@@ -1,5 +1,5 @@
 #!/bin/bash
-python ArcheoEpidemic_Chimera3b1.py \
+python ArcheoEpidemic_Chimera4a2.py \
   --seed 42 \
   --steps 500 \
   --pop-total 1000 \
@@ -13,4 +13,5 @@ python ArcheoEpidemic_Chimera3b1.py \
   --export-json ./output \
   --export-network output/network.png \
   --export-csv ./data_knime \
+  --export-neo4j ./data_neo4j \
   --verbose
