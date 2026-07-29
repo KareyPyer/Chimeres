@@ -1,5 +1,5 @@
 #!/bin/bash
-python ArcheoEpidemic_Chimera4a2.py \
+python ArcheoEpidemic_Chimera4b1.py \
   --seed 42 \
   --steps 500 \
   --pop-total 1000 \
