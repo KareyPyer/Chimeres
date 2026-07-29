@@ -1,0 +1,10 @@
+timestamp,event_type,event_id,myth_id,faction_id
+7,faction_emergence,,,FAC-001
+13,cultural_resonance,,,
+13,faction_emergence,,,FAC-002
+20,myth,,MYTH-001,
+34,narrative_eclipse,,,
+40,myth,,MYTH-002,
+49,narrative_eclipse,,,
+50,cultural_resonance,,,
+50,faction_emergence,,,FAC-003

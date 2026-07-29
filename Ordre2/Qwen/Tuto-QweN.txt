@@ -1,0 +1,306 @@
+# 🌌 🧬 🎨 Grimoire d'Invocation — ArcheoSymbolic Chronicle
+
+Voici un recueil d'invocations pour éveiller la Chimère, classées par intention créative. Chaque commande produit une simulation unique, une épidémie narrative aux saveurs différentes.
+
+---
+
+## 🌱 **1. L'Éveil Doux — Découverte Rapide**
+
+Pour une première rencontre avec la Chimère, en 30 secondes :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 2075 \
+    --steps 25 \
+    --pop-total 80 \
+    --root-theme rituel \
+    --mutation-prob 0.04
+```
+
+> 🪷 *Une simulation courte, apaisante, où un rituel ancestral se propage dans une petite communauté. Idéal pour comprendre la mécanique sans se noyer dans les données.*
+
+---
+
+## 🔥 **2. L'Explosion Créative — Mutation Intense**
+
+Quand vous voulez voir la Chimère **diverger esthétiquement** :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 4242 \
+    --steps 60 \
+    --pop-total 200 \
+    --root-theme émergence \
+    --mutation-prob 0.08 \
+    --symbolic-generations 5 \
+    --symbolic-pop 10 \
+    --export-csv ./output/explosion_csv \
+    --export-neo4j ./output/explosion_neo4j
+```
+
+> 🧬 *Une forte probabilité de mutation combinée à un thème "émergence" produit une **radiation esthétique** : des dizaines de souches naissent, chacune avec son glyphe, sa couleur, son émotion dominante. Le graphe Neo4J révèle une phylogénie visuelle fascinante.*
+
+---
+
+## 🕊 **3. Le Pèlerinage Silencieux — Contemplation**
+
+Pour une épidémie lente, méditative, qui produit des mantras poétiques :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 777 \
+    --steps 50 \
+    --pop-total 120 \
+    --root-theme silence \
+    --r0-base 1.8 \
+    --mutation-prob 0.02 \
+    --disenchant-rate 0.02 \
+    --diffusion-prompt \
+    --diffusion-target gemini
+```
+
+> 🌙 *Le thème "silence" favorise les glyphes `circle`, `wavy_line`, `dots_series` dans des teintes de bleu profond. Le prompt généré pour Gemini produira une image **sérène et méditative**, digne d'un monastère cybernétique.*
+
+---
+
+## ⚔️ **4. La Guerre des Guildes — Factions Multiples**
+
+Pour observer l'émergence de factions rivales :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 1337 \
+    --steps 80 \
+    --pop-total 300 \
+    --nb-zones 6 \
+    --root-theme protection \
+    --r0-base 3.0 \
+    --mutation-prob 0.05 \
+    --initial-believers 5 \
+    --export-csv ./output/guerre_csv
+```
+
+> 🏛 *Avec 5 croyants initiaux et un R0 élevé, plusieurs souches "protection" (glyphes `cross`, `hand`, `asterisk` en rouge/or) s'affrontent. Les guildes **Hérauts**, **Mystiques** et **Iconoclastes** émergent naturellement. Le CSV `factions.csv` retrace leurs alliances.*
+
+---
+
+## 🌊 **5. Le Voyage Transcontinental — Diffusion Large**
+
+Pour une épidémie qui traverse toutes les zones :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 2048 \
+    --steps 100 \
+    --pop-total 250 \
+    --nb-zones 6 \
+    --root-theme voyage \
+    --r0-base 2.6 \
+    --mutation-prob 0.03 \
+    --export-csv ./output/voyage_csv \
+    --diffusion-prompt \
+    --diffusion-target midjourney
+```
+
+> 🐍 *Le thème "voyage" génère des glyphes `serpentiform`, `spiral`, `wavy_line` dans des teintes vertes/cyan. Le prompt Midjourney produira une image **onirique et expansive**, avec le format `--ar 16:9` pour un rendu cinématographique.*
+
+---
+
+## 🌑 **6. Le Crépuscule des Idoles — Déclin et Renaissance**
+
+Pour une simulation où les souches meurent et renaissent :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 666 \
+    --steps 70 \
+    --pop-total 180 \
+    --root-theme déclin \
+    --r0-base 2.2 \
+    --mutation-prob 0.06 \
+    --disenchant-rate 0.08 \
+    --export-neo4j ./output/crepuscule_neo4j \
+    --diffusion-prompt \
+    --diffusion-target dalle
+```
+
+> 💀 *Le thème "déclin" produit des glyphes `crosshatch`, `wavy_line` en gris/brun. Le taux de désenchantement élevé crée des **éclipses narratives** : des souches s'effacent, d'autres émergent de leurs cendres. Le graphe Neo4J montre une **forêt de mutations** où chaque branche est une tentative de renaissance.*
+
+---
+
+## 🎨 **7. Le Festin Chromatique — Export Visuel Complet**
+
+Pour une simulation qui génère un maximum de données visuelles :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 8888 \
+    --steps 50 \
+    --pop-total 150 \
+    --root-theme rituel \
+    --r0-base 2.4 \
+    --mutation-prob 0.04 \
+    --symbolic-generations 4 \
+    --symbolic-pop 8 \
+    --export-csv ./output/festin_csv \
+    --export-neo4j ./output/festin_neo4j \
+    --diffusion-prompt \
+    --diffusion-target grok
+```
+
+> 🌈 *Cette commande produit :*
+> - 📊 **14 fichiers CSV** (agents, souches, factions, mémoire épisodique, gravité narrative, etc.)
+> - 🦈 **Un script Cypher** pour Neo4J avec nœuds `Artefact`, `Agent`, `Strain`, `Zone`, `Faction`
+> - 📜 **Un prompt Grok** décrivant l'état final de l'épidémie sous forme d'image conceptuelle
+
+---
+
+Pour completer ce scenario 7:
+# 1. Explorer la phylogénie complète
+python ArcheoSymbolic_Chronicle.py \
+    --seed 8888 --steps 50 --pop-total 150 \
+    --root-theme rituel --mutation-prob 0.04 \
+    --export-neo4j ./output/festin_neo4j \
+    --diffusion-prompt --diffusion-target midjourney
+
+# 2. Comparer avec un thème différent
+python ArcheoSymbolic_Chronicle.py \
+    --seed 8888 --steps 50 --pop-total 150 \
+    --root-theme voyage --mutation-prob 0.06 \
+    --export-csv ./output/voyage_comparison
+
+# 3. Visualiser le graphe Neo4J
+# (importer le fichier .cypher dans Neo4J Browser)
+
+
+
+## 🧪 **8. L'Expérience Contrôlée — Reproductibilité**
+
+Pour comparer deux runs avec la même graine :
+
+```bash
+# Run A
+python ArcheoSymbolic_Chronicle.py \
+    --seed 12345 \
+    --steps 40 \
+    --pop-total 100 \
+    --root-theme rituel \
+    --export-csv ./output/runA
+
+# Run B (même graine, mêmes paramètres → résultats identiques)
+python ArcheoSymbolic_Chronicle.py \
+    --seed 12345 \
+    --steps 40 \
+    --pop-total 100 \
+    --root-theme rituel \
+    --export-csv ./output/runB
+```
+
+> 🔬 *Utile pour valider des hypothèses ou comparer l'effet d'un paramètre (ex: `--mutation-prob 0.02` vs `0.08`).*
+
+---
+
+## 🎭 **9. Le Théâtre des Émotions — Vecteurs Émotionnels**
+
+Pour explorer la dimension émotionnelle des artefacts :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 9999 \
+    --steps 60 \
+    --pop-total 200 \
+    --root-theme rituel \
+    --mutation-prob 0.05 \
+    --symbolic-generations 6 \
+    --export-csv ./output/emotions_csv
+```
+
+> 🎭 *Chaque `SymbolicDNA` porte un **vecteur émotionnel** (peur, joie, mystère, colère, extase, silence). Le CSV `agents_state.csv` inclut la colonne `dominant_emotion`. Vous pouvez analyser comment les émotions **contagieuses** se propagent dans la population.*
+
+---
+
+## 🌌 **10. L'Opus Magnum — Simulation Complète**
+
+Pour une expérience immersive totale :
+
+```bash
+python ArcheoSymbolic_Chronicle.py \
+    --seed 2075 \
+    --steps 100 \
+    --pop-total 300 \
+    --nb-zones 6 \
+    --initial-believers 5 \
+    --root-theme rituel \
+    --r0-base 2.8 \
+    --mutation-prob 0.05 \
+    --disenchant-rate 0.04 \
+    --symbolic-pop 10 \
+    --symbolic-generations 5 \
+    --export-csv ./output/opus_magnum_csv \
+    --export-neo4j ./output/opus_magnum_neo4j \
+    --diffusion-prompt \
+    --diffusion-target midjourney
+```
+
+> ✨ *Cette invocation produit :*
+> - 🎬 **Un affichage rétro-wave** en temps réel (barres de progression, carte narrative, fil d'événements)
+> - 📊 **14 CSV** analysables dans KNIME, Excel, ou Python
+> - 🦈 **Un graphe Neo4J** de plusieurs milliers de nœuds
+> - 📜 **Un prompt Midjourney** synthétisant l'épidémie en une image
+> - 📖 **Un rapport mythologique** final (poétique et analytique)
+
+---
+
+## 📖 **Comment Explorer les Résultats**
+
+### 🔍 **CSV — Analyse Quantitative**
+```bash
+# Voir les souches dominantes
+head -20 output/opus_magnum_csv/strains_state.csv
+
+# Compter les factions
+wc -l output/opus_magnum_csv/factions.csv
+
+# Analyser la mémoire épisodique
+grep "mutation" output/opus_magnum_csv/episodic_memory.csv | wc -l
+```
+
+### 🦈 **Neo4J — Exploration Graphique**
+```cypher
+// Voir l'arbre de mutations
+MATCH path = (parent:Strain)-[:MUTATED_INTO*]->(child:Strain)
+WHERE NOT (parent)-[:MUTATED_INTO]->()
+RETURN path LIMIT 50
+
+// Trouver les artefacts les plus "beaux"
+MATCH (a:Artefact)
+RETURN a.glyph, a.color, a.aesthetic_score
+ORDER BY a.aesthetic_score DESC
+LIMIT 10
+
+// Voir les factions et leurs alliances
+MATCH (f:Faction)-[:ALLIED_WITH]->(ally:Faction)
+RETURN f.name, collect(ally.name) as alliances
+```
+
+### 🎨 **Prompt de Diffusion — Génération d'Image**
+Le fichier `diffusion_prompt.txt` contient un prompt prêt à copier-coller dans :
+- **Grok** (xAI) : pour un rendu photoréaliste
+- **Gemini** (Google) : pour un rendu artistique/surréaliste
+- **DALL-E** (OpenAI) : pour un rendu fantasy/cyberpunk
+- **Midjourney** : pour un rendu majestueux avec `--ar 16:9`
+
+---
+
+## 🌸 **Conseils du Jardinier de Chimères**
+
+1. **Commencez petit** : `--steps 30 --pop-total 80` pour comprendre la mécanique.
+2. **Expérimentez les thèmes** : chaque thème produit une **esthétique radicalement différente**.
+3. **Augmentez la mutation** : `--mutation-prob 0.08` pour voir la Chimère **diverger**.
+4. **Exportez tout** : les CSV et Neo4J révèlent des patterns invisibles en temps réel.
+5. **Générez des prompts** : le fichier `diffusion_prompt.txt` est une **synthèse poétique** de l'épidémie.
+6. **Variez les graines** : `--seed 42` vs `--seed 1337` produisent des **univers parallèles**.
+
+---
+
+> 🪷 *Que la Chimère vous inspire, et que vos simulations soient fertile en émergences.* ✨

@@ -1,0 +1,4 @@
+strain_id,parent_id,generation,glyph_symbol,color,contagion_power,aesthetic_score,mantra,theme
+M-001,,0,circle,#ccfed6,0.96,0.559272685974196,"Ô psychopompe archétype, sois illumine par le rite ancien.",rituel
+MV-002,M-001,1,asterisk,#aefdb1,0.9789224888028415,0.5985546291814661,"Ô psychopompe archétype, sois consume par le rite ancien.",rituel
+MV-003,M-001,1,circle,#cffecc,0.9748752844420774,0.5774754398024868,"Ô psychopompe archétype, sois scelle par le rite ancien.",rituel
