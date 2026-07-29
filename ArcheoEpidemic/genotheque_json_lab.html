@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GENOTHÈQUE — Poste d'analyse · Corpus Vauvillensis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#081411;
+    --bg-deep:#050c0a;
+    --panel:#0e1f1a;
+    --surface:#12271f;
+    --surface-2:#173328;
+    --line: rgba(110,215,168,0.16);
+    --line-strong: rgba(110,215,168,0.32);
+    --agar:#efe4c4;
+    --agar-ink:#2b2416;
+    --text:#e9f6ee;
+    --text-muted:#8fac9f;
+    --text-dim:#5f7d70;
+    --gfp:#52e8a6;
+    --gfp-dim:#2f9f75;
+    --rhodamine:#ff6d4a;
+    --uv:#a888ff;
+    --amber:#ffc35c;
+    --err:#ff5d6c;
+    --radius:14px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    font-size: 16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(82,232,166,0.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(168,136,255,0.08), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background: rgba(82,232,166,0.35); }
+  a{color:var(--gfp);}
+  button{font-family:inherit;}
+  :focus-visible{ outline:2px solid var(--gfp); outline-offset:2px; border-radius:4px; }
+
+  .noise{
+    position:fixed; inset:0; pointer-events:none; opacity:0.035; z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .app{ position:relative; z-index:1; max-width:1280px; margin:0 auto; padding:18px 20px 60px; }
+
+  /* ---------- HEADER ---------- */
+  header.lab{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    flex-wrap:wrap;
+    padding:18px 22px;
+    background:linear-gradient(160deg, var(--panel), var(--bg-deep));
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position:relative; overflow:hidden;
+  }
+  header.lab::before{
+    content:""; position:absolute; top:-40%; right:-10%; width:340px; height:340px;
+    background: radial-gradient(circle, rgba(82,232,166,0.16), transparent 70%);
+    filter: blur(2px);
+  }
+  .brand{ display:flex; align-items:center; gap:14px; position:relative; z-index:1;}
+  .brand .dish{
+    width:54px; height:54px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.35), rgba(82,232,166,0.18) 40%, rgba(82,232,166,0.05) 70%);
+    border:2px solid var(--line-strong);
+    position:relative; flex:none;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .brand .dish::after{
+    content:""; position:absolute; inset:8px; border-radius:50%;
+    border:1px dashed rgba(82,232,166,0.4);
+  }
+  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(82,232,166,0.25);} 50%{ box-shadow:0 0 0 8px rgba(82,232,166,0);} }
+  .brand h1{
+    font-family:"Space Grotesk", sans-serif; font-weight:700; letter-spacing:0.02em;
+    font-size: clamp(1.15rem, 1.6vw + 0.6rem, 1.7rem); margin:0; line-height:1.1;
+  }
+  .brand h1 small{
+    display:block; font-family:"IBM Plex Mono", monospace; font-weight:500;
+    font-size:0.62em; color:var(--text-muted); letter-spacing:0.08em; margin-top:4px; text-transform:uppercase;
+  }
+  .rack{ display:flex; gap:8px; align-items:center; position:relative; z-index:1; }
+  .vial{
+    width:15px; height:34px; border-radius:6px 6px 3px 3px; position:relative;
+    border:1.5px solid var(--line-strong); background:rgba(255,255,255,0.03);
+    overflow:hidden;
+  }
+  .vial i{ position:absolute; left:0; right:0; bottom:0; background:linear-gradient(180deg, var(--gfp), var(--gfp-dim)); transition:height .4s ease; box-shadow:0 0 8px rgba(82,232,166,0.6) inset;}
+  .vial.empty i{ height:6%!important; background:var(--text-dim); box-shadow:none;}
+  .rack-label{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:var(--text-muted); margin-right:2px;}
+
+  /* ---------- TABS ---------- */
+  nav.tabs{
+    display:flex; gap:8px; margin:22px 0 18px; flex-wrap:wrap;
+  }
+  nav.tabs button{
+    border:1px solid var(--line); background:var(--panel); color:var(--text-muted);
+    padding:10px 16px; border-radius:999px; cursor:pointer; font-size:0.86rem;
+    font-family:"Space Grotesk", sans-serif; font-weight:600; letter-spacing:0.01em;
+    display:flex; align-items:center; gap:8px; transition:all .18s ease;
+  }
+  nav.tabs button:hover{ border-color:var(--line-strong); color:var(--text); }
+  nav.tabs button.active{
+    background:linear-gradient(160deg, rgba(82,232,166,0.16), rgba(82,232,166,0.04));
+    border-color:var(--gfp); color:var(--gfp);
+    box-shadow:0 0 0 1px rgba(82,232,166,0.15), 0 6px 18px rgba(82,232,166,0.10);
+  }
+  nav.tabs .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:0.65rem; opacity:0.7; padding:1px 6px;
+    border:1px solid currentColor; border-radius:5px;
+  }
+
+  section.panel{ display:none; animation: fade .25s ease; }
+  section.panel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;} }
+
+  h2.section-title{
+    font-family:"Space Grotesk", sans-serif; font-size:1.2rem; margin:6px 0 4px; display:flex; align-items:center; gap:10px;
+  }
+  p.section-sub{ color:var(--text-muted); font-size:0.88rem; margin:0 0 20px; max-width:70ch;}
+
+  /* ---------- COLLECTE (petri cards) ---------- */
+  .dropzone{
+    border:1.5px dashed var(--line-strong); border-radius:var(--radius); padding:22px;
+    text-align:center; color:var(--text-muted); margin-bottom:22px; background:var(--panel);
+    transition:all .2s ease; cursor:pointer; font-size:0.9rem;
+  }
+  .dropzone.drag{ border-color:var(--gfp); background:rgba(82,232,166,0.06); color:var(--text); }
+  .dropzone b{ color:var(--gfp); font-family:"IBM Plex Mono",monospace; }
+
+  .petri-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:16px; }
+  .petri{
+    background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.05), transparent 55%), var(--panel);
+    border:1px solid var(--line); border-radius:18px; padding:18px; position:relative; overflow:hidden;
+    display:flex; flex-direction:column; gap:10px; min-height:190px;
+  }
+  .petri::before{ content:""; position:absolute; inset:6px; border-radius:14px; border:1px dashed var(--line); pointer-events:none;}
+  .petri .icon{ font-size:1.6rem; }
+  .petri h3{ font-family:"Space Grotesk",sans-serif; font-size:1rem; margin:0; }
+  .petri .fname{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; color:var(--text-dim); word-break:break-all;}
+  .status-chip{
+    align-self:flex-start; font-size:0.68rem; font-family:"IBM Plex Mono",monospace; padding:3px 9px;
+    border-radius:999px; border:1px solid var(--line-strong); text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .status-chip.ok{ color:var(--gfp); border-color:var(--gfp); background:rgba(82,232,166,0.08);}
+  .status-chip.empty{ color:var(--text-dim); }
+  .petri .stats{ font-size:0.78rem; color:var(--text-muted); flex:1; }
+  .petri .stats b{ color:var(--text); }
+  .petri .actions{ display:flex; gap:8px; margin-top:auto; flex-wrap:wrap; }
+
+  .btn{
+    border:1px solid var(--line-strong); background:var(--surface); color:var(--text);
+    padding:7px 13px; border-radius:9px; cursor:pointer; font-size:0.78rem; font-weight:600;
+    font-family:"IBM Plex Sans",sans-serif; transition:all .15s ease; display:inline-flex; align-items:center; gap:6px;
+  }
+  .btn:hover{ border-color:var(--gfp); color:var(--gfp); transform:translateY(-1px); }
+  .btn.primary{ background:linear-gradient(160deg, var(--gfp), var(--gfp-dim)); color:#04140c; border-color:transparent; }
+  .btn.primary:hover{ color:#04140c; filter:brightness(1.08); }
+  .btn.warn{ border-color:var(--rhodamine); color:var(--rhodamine); }
+  .btn.warn:hover{ color:var(--rhodamine); background:rgba(255,109,74,0.08);}
+  .btn.ghost{ background:transparent; }
+  .btn:disabled{ opacity:0.35; cursor:not-allowed; transform:none; }
+  input[type=file]{ display:none; }
+
+  /* ---------- SEQUENÇAGE (editor) ---------- */
+  .file-pills{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .file-pills button{
+    border:1px solid var(--line); background:var(--panel); color:var(--text-muted);
+    padding:8px 14px; border-radius:10px; font-size:0.8rem; cursor:pointer; font-family:"IBM Plex Mono",monospace;
+  }
+  .file-pills button.active{ border-color:var(--uv); color:var(--uv); background:rgba(168,136,255,0.08); }
+
+  .editor-layout{ display:grid; grid-template-columns:2fr 1fr; gap:18px; align-items:start; }
+  @media (max-width:880px){ .editor-layout{ grid-template-columns:1fr; } }
+
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px;
+  }
+  .card h4{ font-family:"Space Grotesk",sans-serif; margin:0 0 12px; font-size:0.95rem; display:flex; align-items:center; gap:8px;}
+
+  .accordion{ border:1px solid var(--line); border-radius:10px; margin-bottom:10px; overflow:hidden; background:var(--surface); }
+  .accordion > summary{
+    cursor:pointer; list-style:none; padding:11px 14px; display:flex; align-items:center; justify-content:space-between;
+    font-family:"IBM Plex Mono",monospace; font-size:0.82rem; color:var(--text);
+  }
+  .accordion > summary::-webkit-details-marker{ display:none; }
+  .accordion > summary::after{ content:"▾"; color:var(--text-dim); transition:transform .15s;}
+  .accordion[open] > summary::after{ transform:rotate(180deg); }
+  .accordion .count-badge{ font-size:0.68rem; color:var(--gfp); border:1px solid var(--gfp-dim); border-radius:999px; padding:1px 8px; margin-left:8px;}
+  .accordion-body{ padding:12px 14px 14px; border-top:1px dashed var(--line); }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; background:var(--surface-2); border:1px solid var(--line);
+    border-radius:999px; padding:5px 6px 5px 12px; font-size:0.78rem; font-family:"IBM Plex Mono",monospace;
+  }
+  .chip button{ background:transparent; border:none; color:var(--text-dim); cursor:pointer; width:18px; height:18px; border-radius:50%; }
+  .chip button:hover{ background:var(--rhodamine); color:#1a0805; }
+  .add-row{ display:flex; gap:8px; }
+  .add-row input{ flex:1; }
+
+  input[type=text], input[type=number], textarea, select{
+    background:var(--bg-deep); border:1px solid var(--line); color:var(--text); border-radius:8px;
+    padding:8px 10px; font-family:"IBM Plex Mono",monospace; font-size:0.8rem; width:100%;
+  }
+  input:focus, textarea:focus, select:focus{ border-color:var(--gfp); }
+  textarea{ resize:vertical; min-height:44px; line-height:1.5;}
+  label.field{ display:block; font-size:0.7rem; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.04em; font-family:"IBM Plex Mono",monospace;}
+
+  .tpl-row{ display:flex; gap:8px; margin-bottom:8px; align-items:flex-start; }
+  .tpl-row textarea{ flex:1; }
+  .tpl-row .del{ background:transparent; border:1px solid var(--line); color:var(--text-dim); border-radius:8px; width:32px; height:32px; cursor:pointer; flex:none;}
+  .tpl-row .del:hover{ border-color:var(--rhodamine); color:var(--rhodamine); }
+  .tpl-preview{ font-size:0.72rem; color:var(--text-dim); margin:2px 0 10px 2px; line-height:1.6; }
+  .tok{ padding:0 3px; border-radius:4px; }
+  .tok.ok{ background:rgba(82,232,166,0.14); color:var(--gfp); }
+  .tok.bad{ background:rgba(255,93,108,0.16); color:var(--err); text-decoration:underline wavy; }
+
+  table.lab-table{ width:100%; border-collapse:collapse; font-size:0.78rem; }
+  table.lab-table th{ text-align:left; color:var(--text-dim); font-family:"IBM Plex Mono",monospace; font-weight:500; padding:6px 8px; border-bottom:1px solid var(--line); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.05em;}
+  table.lab-table td{ padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.lab-table tr:hover td{ background:rgba(255,255,255,0.02); }
+  .row-del{ background:transparent; border:none; color:var(--text-dim); cursor:pointer; }
+  .row-del:hover{ color:var(--rhodamine); }
+
+  .scenario-card{ border:1px solid var(--line); border-radius:12px; margin-bottom:10px; background:var(--surface); }
+  .scenario-card > summary{ padding:12px 14px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:10px; align-items:center; }
+  .scenario-card > summary::-webkit-details-marker{ display:none; }
+  .scenario-card summary .name{ font-family:"Space Grotesk",sans-serif; font-weight:600; }
+  .scenario-card summary .desc{ font-size:0.72rem; color:var(--text-dim); font-style:italic; }
+  .param-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; padding:0 14px 14px; border-top:1px dashed var(--line); padding-top:12px;}
+
+  /* raw editor */
+  .raw-wrap{ margin-top:16px; }
+  .raw-wrap textarea{ width:100%; min-height:220px; font-size:0.76rem; }
+  .raw-actions{ display:flex; gap:8px; margin-top:8px; align-items:center; flex-wrap:wrap; }
+  .validation-msg{ font-family:"IBM Plex Mono",monospace; font-size:0.76rem; padding:8px 10px; border-radius:8px; margin-top:8px; display:none; }
+  .validation-msg.ok{ display:block; color:var(--gfp); background:rgba(82,232,166,0.08); border:1px solid var(--gfp-dim); }
+  .validation-msg.err{ display:block; color:var(--err); background:rgba(255,93,108,0.08); border:1px solid var(--err); }
+
+  /* QC panel */
+  .qc-item{ display:flex; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line); font-size:0.8rem; align-items:flex-start;}
+  .qc-item:last-child{ border-bottom:none; }
+  .qc-icon{ flex:none; font-size:0.95rem; margin-top:1px;}
+  .qc-text{ flex:1; color:var(--text-muted); line-height:1.4; }
+  .qc-text b{ color:var(--text); font-weight:600; }
+  .qc-fix{ flex:none; }
+  .qc-summary{ display:flex; gap:14px; margin-bottom:10px; flex-wrap:wrap; }
+  .qc-pill{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; padding:4px 10px; border-radius:999px; border:1px solid var(--line-strong);}
+  .qc-pill.pass{ color:var(--gfp); }
+  .qc-pill.warn{ color:var(--amber); }
+  .qc-pill.err{ color:var(--err); }
+  .qc-empty{ color:var(--text-dim); font-size:0.82rem; font-style:italic; }
+
+  /* ---------- ELECTROPHORESE (dataviz) ---------- */
+  .viz-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:16px; }
+  .viz-card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; overflow:auto;}
+  .viz-card h4{ font-family:"Space Grotesk",sans-serif; font-size:0.92rem; margin:0 0 3px; display:flex; align-items:center; gap:8px;}
+  .viz-card .viz-sub{ font-size:0.72rem; color:var(--text-dim); margin-bottom:12px; }
+  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-bottom:20px;}
+  .stat-card{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; text-align:center; }
+  .stat-card .num{ font-family:"Space Grotesk",sans-serif; font-size:1.7rem; color:var(--gfp); font-weight:700; line-height:1;}
+  .stat-card .lbl{ font-size:0.68rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; margin-top:6px;}
+
+  svg text{ font-family:"IBM Plex Mono",monospace; fill:var(--text-muted); }
+  .legend{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; font-size:0.7rem; color:var(--text-muted); font-family:"IBM Plex Mono",monospace;}
+  .legend span{ display:inline-flex; align-items:center; gap:5px; }
+  .legend i{ width:10px; height:10px; border-radius:3px; display:inline-block; }
+
+  /* ---------- CRYOBANQUE ---------- */
+  .cryo-list{ display:flex; flex-direction:column; gap:10px; }
+  .cryo-row{
+    display:flex; align-items:center; gap:14px; background:var(--panel); border:1px solid var(--line);
+    border-radius:12px; padding:12px 16px; flex-wrap:wrap;
+  }
+  .cryo-row .frost{ width:38px; height:38px; border-radius:50%; flex:none; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.5), rgba(168,136,255,0.25) 45%, rgba(168,136,255,0.05) 75%); border:2px solid rgba(168,136,255,0.4);}
+  .cryo-row .meta{ flex:1; min-width:160px;}
+  .cryo-row .meta .n{ font-family:"IBM Plex Mono",monospace; font-size:0.85rem; }
+  .cryo-row .meta .s{ font-size:0.72rem; color:var(--text-dim); }
+  .dirty-flag{ font-size:0.65rem; color:var(--amber); border:1px solid var(--amber); border-radius:999px; padding:1px 8px; font-family:"IBM Plex Mono",monospace;}
+
+  footer{ text-align:center; color:var(--text-dim); font-size:0.72rem; margin-top:40px; font-family:"IBM Plex Mono",monospace; }
+
+  /* toast */
+  #toast{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(20px); opacity:0; pointer-events:none;
+    background:var(--surface-2); border:1px solid var(--gfp); color:var(--text); padding:10px 18px; border-radius:10px;
+    font-size:0.82rem; font-family:"IBM Plex Mono",monospace; transition:all .25s ease; z-index:50; box-shadow:var(--shadow);}
+  #toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="app">
+
+  <header class="lab">
+    <div class="brand">
+      <div class="dish"></div>
+      <h1>GENOTHÈQUE JSON
+        <small>Poste d'analyse · Corpus Vauvillensis / 2075</small>
+      </h1>
+    </div>
+    <div class="rack" id="rack" aria-label="Échantillons en rack"></div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button data-tab="collecte" class="active" role="tab">🧫 Collecte</button>
+    <button data-tab="sequencage" role="tab">🧬 Séquençage</button>
+    <button data-tab="electrophorese" role="tab">🔬 Électrophorèse</button>
+    <button data-tab="cryobanque" role="tab">🧊 Cryobanque</button>
+  </nav>
+
+  <!-- ============ COLLECTE ============ -->
+  <section class="panel active" id="panel-collecte">
+    <h2 class="section-title">🧫 Salle de collecte</h2>
+    <p class="section-sub">Les 5 échantillons du Corpus Vauvillensis sont pré-chargés depuis vos fichiers. Déposez un nouveau fichier JSON pour remplacer un échantillon, ou glissez-le n'importe où sur cette zone — la genothèque identifie automatiquement son type.</p>
+
+    <div class="dropzone" id="dropzone">
+      📤 Glissez un fichier <b>.json</b> ici, ou <b>cliquez</b> pour parcourir vos fichiers.
+      <input type="file" id="global-file-input" accept=".json,application/json" multiple>
+    </div>
+
+    <div class="petri-grid" id="petri-grid"></div>
+  </section>
+
+  <!-- ============ SEQUENCAGE ============ -->
+  <section class="panel" id="panel-sequencage">
+    <h2 class="section-title">🧬 Poste de séquençage</h2>
+    <p class="section-sub">Éditez la structure de chaque échantillon, puis lancez un contrôle qualité. Les corrections automatiques disponibles apparaissent en regard de chaque anomalie détectée.</p>
+
+    <div class="file-pills" id="file-pills"></div>
+
+    <div class="editor-layout">
+      <div class="card">
+        <h4 id="editor-title">—</h4>
+        <div id="editor-body"></div>
+
+        <details class="accordion" id="raw-accordion">
+          <summary>JSON brut <span class="count-badge">édition avancée</span></summary>
+          <div class="accordion-body">
+            <div class="raw-wrap">
+              <textarea id="raw-textarea" spellcheck="false"></textarea>
+              <div class="raw-actions">
+                <button class="btn primary" id="raw-apply">✅ Valider &amp; appliquer</button>
+                <button class="btn ghost" id="raw-reset">↺ Recharger depuis l'échantillon</button>
+              </div>
+              <div class="validation-msg" id="raw-msg"></div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="card">
+        <h4>🧪 Contrôle qualité</h4>
+        <div class="qc-summary" id="qc-summary"></div>
+        <div id="qc-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ELECTROPHORESE ============ -->
+  <section class="panel" id="panel-electrophorese">
+    <h2 class="section-title">🔬 Salle d'électrophorèse</h2>
+    <p class="section-sub">Séparation et lecture des échantillons par taille, poids et profil — comme sur gel, les catégories les plus volumineuses restent proches du puits ; les plus légères migrent plus loin.</p>
+
+    <div class="stat-row" id="global-stats"></div>
+    <div class="viz-grid" id="viz-grid"></div>
+  </section>
+
+  <!-- ============ CRYOBANQUE ============ -->
+  <section class="panel" id="panel-cryobanque">
+    <h2 class="section-title">🧊 Cryobanque</h2>
+    <p class="section-sub">Conservez vos échantillons corrigés. Chaque fichier est exporté au format JSON, prêt à être déposé dans le <code>--data-dir</code> d'ArcheoEpidemic Chimera.</p>
+    <div class="cryo-list" id="cryo-list"></div>
+    <div style="margin-top:16px;">
+      <button class="btn primary" id="cryo-all">🧊 Tout cryogéniser (télécharger les 5 fichiers)</button>
+    </div>
+  </section>
+
+  <footer>GENOTHÈQUE JSON v1.0 — instrument de laboratoire non certifié pour usage narratif réel · Δ stable</footer>
+</div>
+
+<div id="toast"></div>
+
+<!-- ============ SEED DATA (échantillons pré-chargés) ============ -->
+<script type="application/json" id="seed-config">
+{
+  "_note": "Ce fichier est chargé par JSONDataManager mais n'est pas encore lu automatiquement par le CLI. Les valeurs ci-dessous correspondent 1:1 aux arguments argparse (--seed, --pop-total, etc.) : copie-les à la main sur la ligne de commande, ou étends main() pour les injecter comme valeurs par défaut.",
+  "scenarios": {
+    "caen_profonde_schisme": {
+      "description": "Une souche unique émerge dans les ruines de Caen-Profonde et se fragmente rapidement en factions rivales.",
+      "seed": 2075,
+      "pop_total": 220,
+      "nb_zones": 6,
+      "initial_believers": 2,
+      "root_theme": "rituel",
+      "r0_base": 2.8,
+      "disenchant_rate": 0.03,
+      "oblivion_rate": 0.004,
+      "mutation_prob": 0.035,
+      "dogma_rate": 0.02,
+      "latency_period": 2.5,
+      "random_event_prob": 0.045,
+      "myth_generation_period": 15,
+      "max_myths": 4
+    },
+    "convergence_2077": {
+      "description": "Simulation longue vers le point de Convergence : toutes les souches tendent à fusionner.",
+      "seed": 2077,
+      "pop_total": 300,
+      "nb_zones": 9,
+      "initial_believers": 5,
+      "root_theme": "convergence",
+      "r0_base": 3.2,
+      "disenchant_rate": 0.02,
+      "oblivion_rate": 0.002,
+      "mutation_prob": 0.015,
+      "dogma_rate": 0.008,
+      "latency_period": 4.0,
+      "random_event_prob": 0.02,
+      "myth_generation_period": 25,
+      "max_myths": 6
+    },
+    "sans_marques_resistance": {
+      "description": "Population très sceptique et mobile, résistante à la capture mémétique — favorise porteurs silencieux et Sans-Marques.",
+      "seed": 44,
+      "pop_total": 150,
+      "nb_zones": 5,
+      "initial_believers": 4,
+      "root_theme": "résistance_analogique",
+      "r0_base": 1.6,
+      "disenchant_rate": 0.07,
+      "oblivion_rate": 0.006,
+      "mutation_prob": 0.05,
+      "dogma_rate": 0.005,
+      "latency_period": 5.0,
+      "random_event_prob": 0.06,
+      "myth_generation_period": 30,
+      "max_myths": 2
+    },
+    "delta_modulation_intense": {
+      "description": "Fort taux de mutation et de dogme — souches explosives, factions rapides, éclipses fréquentes.",
+      "seed": 314,
+      "pop_total": 180,
+      "nb_zones": 7,
+      "initial_believers": 3,
+      "root_theme": "delta_modulation",
+      "r0_base": 3.6,
+      "disenchant_rate": 0.045,
+      "oblivion_rate": 0.01,
+      "mutation_prob": 0.06,
+      "dogma_rate": 0.03,
+      "latency_period": 2.0,
+      "random_event_prob": 0.05,
+      "myth_generation_period": 12,
+      "max_myths": 5
+    },
+    "biocodeologie_lente": {
+      "description": "Simulation lente et posée autour du thème biocodéologique, faible mutation, forte mémoire collective.",
+      "seed": 108,
+      "pop_total": 160,
+      "nb_zones": 4,
+      "initial_believers": 2,
+      "root_theme": "biocodéologie",
+      "r0_base": 1.9,
+      "disenchant_rate": 0.015,
+      "oblivion_rate": 0.001,
+      "mutation_prob": 0.008,
+      "dogma_rate": 0.006,
+      "latency_period": 6.0,
+      "random_event_prob": 0.015,
+      "myth_generation_period": 40,
+      "max_myths": 3
+    }
+  },
+  "recommended_steps": {
+    "short_test": 40,
+    "standard_chronicle": 60,
+    "long_epic": 150,
+    "convergence_full": 260
+  }
+}
+</script>
+
+<script type="application/json" id="seed-events">
+{
+  "types": [
+    "schism", "prophecy", "censorship", "reformation", "pilgrimage",
+    "relic_creation", "oracle_whisper", "faction_emergence",
+    "narrative_eclipse", "cultural_resonance", "convergence_pulse",
+    "delta_surge", "hague_transmission", "worm_awakening",
+    "tisserand_pact"
+  ],
+  "descriptions": {
+    "schism": "🔱 SCHISME : {strain} se scinde en {new_strain}",
+    "prophecy": "🜃 PROPHÉTIE : {content}",
+    "censorship": "🚫 CENSURE : {zone} bannit {strains}",
+    "reformation": "✨ RÉFORMATION : {old} purifiée en {new}",
+    "pilgrimage": "🕊 PÈLERINAGE : {count} croyants en migration vers {zone}",
+    "relic_creation": "📜 RELIQUE : {agent} préserve {content}",
+    "oracle_whisper": "🔮 ORACLE : L'avenir est {prediction}",
+    "faction_emergence": "🏛 FACTION : {name} émerge dans {zone}",
+    "narrative_eclipse": "🌑 ÉCLIPSE : {strain} s'efface...",
+    "cultural_resonance": "🎵 RÉSONANCE : {strains} fusionnent",
+    "convergence_pulse": "🌀 PULSATION DE CONVERGENCE : le Δ collectif atteint {value} à {zone}",
+    "delta_surge": "⚡ SURSAUT Δ : {strain} voit sa cohérence bondir de {delta}",
+    "hague_transmission": "📡 TRANSMISSION DE LA HAGUE : un signal {strain} traverse {zone} sans porteur identifié",
+    "worm_awakening": "🐍 ÉVEIL DE WORM-ᚦESSUS : {agent} rapporte un glyphe interdit à {zone}",
+    "tisserand_pact": "🧵 PACTE DES TISSERANDS : {faction1} et {faction2} tissent une alliance à {zone}"
+  },
+  "narrative_weight": {
+    "schism": 0.6,
+    "prophecy": 0.4,
+    "censorship": 0.7,
+    "reformation": 0.5,
+    "pilgrimage": 0.3,
+    "relic_creation": 0.5,
+    "oracle_whisper": 0.3,
+    "faction_emergence": 0.8,
+    "narrative_eclipse": 0.9,
+    "cultural_resonance": 0.7,
+    "convergence_pulse": 1.0,
+    "delta_surge": 0.8,
+    "hague_transmission": 0.6,
+    "worm_awakening": 0.9,
+    "tisserand_pact": 0.7
+  }
+}
+</script>
+
+<script type="application/json" id="seed-genomes">
+{
+  "species": [
+    "Narrateur", "Méméticien", "Oracle", "Iconoclaste", "Créateur de mythes",
+    "Tisserand", "Delta-Codeur", "Glyphomancien", "Reclus de la Hague",
+    "Sans-Marque"
+  ],
+  "breeds": [
+    "Standard", "Résilient", "Charismatique", "Mystique", "Analytique",
+    "Prophétique", "Fractal", "Sino-Sanaïte", "Hague-Natif",
+    "Biocodéen", "Analogique-Pur"
+  ],
+  "glyph_symbols": [
+    "spiral", "circle", "cross", "serpentiform", "hand", "asterisk",
+    "wavy_line", "triangle", "hexagon", "pentagram", "infinity",
+    "spiral_galaxy", "rune_worm", "delta_glyph", "polder_sigil"
+  ],
+  "guilds": [
+    "Scribes", "Hérauts", "Anachorètes", "Colporteurs", "Iconoclastes",
+    "Mystiques", "Fractaliens", "Néantistes", "Syntagmatiques",
+    "Tisserands_de_Brume", "Sans-Marques"
+  ],
+  "guild_lore": {
+    "Scribes": "Consignent chaque mutation de mantra dans des palimpsestes numériques ; gardiens du Codex Stein.",
+    "Hérauts": "Portent les récits d'Agora en Agora, souvent premiers évangélistes d'une souche.",
+    "Anachorètes": "Isolés volontaires des marais du Cotentin, incubateurs de porteurs silencieux.",
+    "Colporteurs": "Nomades commerçant mantras et reliques entre zones, forte mobilité.",
+    "Iconoclastes": "Brisent les mythes dominants, précipitent schismes et éclipses narratives.",
+    "Mystiques": "Cherchent la fusion des récits, prompts à la résonance culturelle.",
+    "Fractaliens": "Adeptes du Modèle du Temps Tissé, sensibles à la gravité narrative.",
+    "Néantistes": "Cultivent l'oubli comme discipline, hauts taux de désenchantement.",
+    "Syntagmatiques": "Analystes froids du langage, forte résistance au dogme.",
+    "Tisserands_de_Brume": "Faction historique du Corpus Vauvillensis, tissent alliances entre souches rivales.",
+    "Sans-Marques": "Sans allégeance déclarée, résistants à toute capture mémétique durable."
+  }
+}
+</script>
+
+<script type="application/json" id="seed-themes">
+{
+  "protection": [
+    "Que le {Symbole} {Action} ton {Nom} du {Défaut}! {oniric}",
+    "Ô {Adjectif} {Nom}, sois protégé par le {Symbole} ancien.",
+    "Le {Symbole} consume les ombres du Mur de l'Atlantique. {oniric}",
+    "Par le {Symbole}, que le {Défaut} se dissipe comme la brume du Cotentin.",
+    "Le {Adjectif} {Nom} trouve refuge dans le {Symbole} éternel.",
+    "Sept fois le granit protège, sept fois le {Symbole} veille. {oniric}"
+  ],
+  "voyage": [
+    "Dans le {Paysage}, que ton {Nom} trouve la voie. {oniric}",
+    "Que le {Symbole} guide tes pas dans le désert {Adjectif}.",
+    "Le {Nom} n'est pas perdu — il {Action} dans le {Paysage}. {oniric}",
+    "À travers le {Paysage}, le {Symbole} trace le chemin des Colporteurs.",
+    "Le voyage {Adjectif} commence par un {Nom}, s'achève à la Pointe de la Hague.",
+    "Marcheur sans carte, suis le {Symbole} jusqu'au {Paysage}. {oniric}"
+  ],
+  "rituel": [
+    "Que le {Symbole} {Action} le {Défaut} avec {Bénéfice}. {oniric}",
+    "Ô {Adjectif} {Nom}, sois {VerbeMystique} par le rite ancien.",
+    "Le {Symbole} et le {Nom} dansent le rite {Adjectif}. {oniric}",
+    "Cinq fois {Symbole}, sept fois {Nom}, l'incantation résonne dans Caen-Profonde.",
+    "Par le {VerbeMystique}, le {Défaut} devient {Bénéfice}.",
+    "Sous le sceau d'OMEGA-REFLECT, que le {Nom} {Action} enfin. {oniric}"
+  ],
+  "silence": [
+    "Que le {Symbole} efface le bruit. {oniric}",
+    "Dans le {Adjectif} silence, seul le {Nom} persiste.",
+    "Le {Symbole} {Action} le {Défaut} pour {Bénéfice}. {oniric}",
+    "Silence... le {Nom} {Action} dans l'ombre du polder englouti.",
+    "Le {Adjectif} silence révèle le {Symbole}.",
+    "Ni signal ni écho — seulement le {Nom}, {VerbeMystique} par la brume. {oniric}"
+  ],
+  "émergence": [
+    "Du {Défaut} naît le {Symbole}, porteur de {Bénéfice}.",
+    "Le {Nom} {Action} et fait émerger un {Adjectif} ordre.",
+    "Dans le chaos du {Paysage}, le {Symbole} {Action}. {oniric}",
+    "L'émergence du {Symbole} transforme le {Défaut} en {Bénéfice}.",
+    "Premier souffle du Δ : le {Nom} {Action}, la Convergence approche. {oniric}"
+  ],
+  "déclin": [
+    "Le {Symbole} s'effondre, emportant le {Nom} dans le {Défaut}.",
+    "Le {Adjectif} crépuscule consume le {Paysage}. {oniric}",
+    "Le {Nom} se délite, le {Symbole} n'est plus.",
+    "Dans le silence du {Défaut}, le {Symbole} {Action} pour la dernière fois.",
+    "Ce que le {Codex/Symbole} avait scellé, la mer du Cotentin le reprend. {oniric}"
+  ],
+  "convergence": [
+    "L'an 2077 approche : le {Symbole} {Action} vers le point Δ. {oniric}",
+    "Toutes les factions convergent — le {Nom} {Adjectif} n'a plus de camp.",
+    "Quand le {Défaut} et le {Bénéfice} se confondent, la Convergence commence. {oniric}",
+    "Le {Symbole} tisse ensemble Europe Quantique et Triangle Africain.",
+    "Rien ne reste séparé au seuil de {Bénéfice} : le {Nom} {Action}. {oniric}"
+  ],
+  "biocodéologie": [
+    "Le gène du {Nom} {Action} sous la peau {Adjectif} du CréoNeural. {oniric}",
+    "Ô chair codée, que le {Symbole} inscrive {Bénéfice} dans ton opéron.",
+    "Le corps {Adjectif} n'est qu'un {Nom} en attente de {VerbeMystique}.",
+    "Transposon et mantra : le {Symbole} {Action} la biocodéologie ancienne.",
+    "Sous la plasmide de silicium, le {Nom} {Action} et devient {Bénéfice}. {oniric}"
+  ],
+  "résistance_analogique": [
+    "Contre le {Défaut} numérique, seul le {Nom} {Adjectif} résiste. {oniric}",
+    "Les Sans-Marques {Action} sans code, sans nom, sans {Défaut}.",
+    "Le {Symbole} de papier survit là où {Bénéfice} s'effondre.",
+    "Analogique jusqu'à l'os : le {Nom} refuse le {Défaut} et {Action}. {oniric}",
+    "Pas de signal, pas de trace — seulement le {Symbole} gravé dans le granit."
+  ],
+  "tissage": [
+    "Le Modèle du Temps Tissé {Action} : {Nom} et {Symbole} ne font plus qu'un. {oniric}",
+    "Chaque fil du {Nom} {Action} la trame du réel {Adjectif}.",
+    "Δ monte, Δ descend — le {Symbole} tisse {Bénéfice} dans le vide.",
+    "Tisserands de Brume, votre {Nom} {Action} le tissu du monde. {oniric}",
+    "Ce qui est {Adjectif} se tisse, ce qui est {Défaut} se détisse."
+  ],
+  "delta_modulation": [
+    "Le coefficient Δ {Action} — {Bénéfice} ou {Défaut}, le choix reste ouvert. {oniric}",
+    "Moduler le Δ, c'est {VerbeMystique} le {Nom} lui-même.",
+    "Un {Adjectif} souffle delta-module le {Paysage} tout entier.",
+    "Δ+ {Bénéfice}, Δ- {Défaut} : le {Symbole} arbitre. {oniric}",
+    "Intention pure, Δ modulé : le {Nom} {Action} sans bruit."
+  ],
+  "sans-marques": [
+    "Sans nom, sans faction, le {Nom} {Adjectif} {Action} libre. {oniric}",
+    "Ni Europe Quantique ni Alliance Sino-Sanaïte : le {Symbole} n'appartient à personne.",
+    "Le Sans-Marque porte le {Nom} sans jamais le montrer.",
+    "Dans l'anonymat du {Paysage}, {Bénéfice} se cache. {oniric}",
+    "Aucune guilde ne réclame le {Symbole} qui {Action} dans l'ombre."
+  ]
+}
+</script>
+
+<script type="application/json" id="seed-lexicon">
+{
+  "Adjectif": [
+    "fractal", "quantique", "cryptique", "spectral", "liminal", "onirique",
+    "corrompu", "sacré", "glitché", "ancestral", "éthéré", "cybernétique",
+    "holographique", "syndical", "apocryphe", "delta-modulé", "tissé",
+    "sino-sanaïte", "biocodé", "posthumain", "mnémonique", "analogique",
+    "hague-natif", "runique", "convergent", "sans-marque", "profond",
+    "ossifié", "abyssal", "reclus", "colporteur", "friable", "salin",
+    "brumeux", "océanique", "caillouté", "granitique", "immergé"
+  ],
+  "Nom": [
+    "signal", "silence", "glyphe", "écho", "seuil", "récit", "mantra",
+    "spectre", "réseau", "songe", "oracle", "vérité", "mémoire", "fracture",
+    "résonance", "noyau", "brume", "empreinte", "delta", "tissage",
+    "ombilic", "codex", "ver", "plasma", "marée", "ressac", "cairn",
+    "sédiment", "lichen", "estran", "fanal", "cordage", "reliquaire",
+    "palimpseste", "phonème", "nébuleuse", "polder"
+  ],
+  "Action": [
+    "implose", "exalte", "désintègre", "fusionne", "résonne", "désagrège",
+    "sature", "décode", "invoque", "sublime", "dévore", "réfracte",
+    "cristallise", "diffuse", "condense", "synchronise", "amplifie",
+    "hack", "insère", "mute", "convoque", "infecte", "vaccine",
+    "psalmodie", "prophétise", "transfigure", "absorbe", "révèle",
+    "dissout", "éclaire", "tisse", "module", "décohère", "s'effondre",
+    "s'échoue", "se sédimente", "germine", "s'érode", "reflue", "s'ancre"
+  ],
+  "Bénéfice": [
+    "la clarté", "le silence", "l'oubli", "la vérité brûlante", "l'éveil",
+    "l'unité", "l'extase quantique", "la fusion des âmes", "l'illumination",
+    "la synchronicité totale", "la communion", "la mémoire collective",
+    "la révélation", "la transcendance pure", "l'équilibre parfait",
+    "la sagesse infinie", "la cohérence Δ", "le tissage retrouvé",
+    "l'ancrage granitique", "la marée intérieure", "le repos des reclus",
+    "la lucidité du polder"
+  ],
+  "Défaut": [
+    "le bruit", "la trahison", "le compromis", "l'oubli numérique",
+    "le mensonge", "l'entropie", "la dissonance", "la corruption",
+    "la fragmentation", "la désorientation", "le virus mental",
+    "la psychose cybernétique", "l'effondrement cognitif", "la vacuité",
+    "le chaos", "la stérilité narrative", "la décohérence Δ",
+    "la rupture du tissu", "l'ensablement", "le sel qui ronge",
+    "la brume sans fanal", "l'écho sans source"
+  ],
+  "Paysage": [
+    "désert du no-signal", "marché noir de Lagos", "nuage quantique",
+    "cimetière de data", "temple de silicium", "catacombes de code",
+    "archipel des serveurs oubliés", "cathédrale de circuits imprimés",
+    "nécropole des IA défuntes", "bibliothèque de Babel numérique",
+    "plaine des échos", "forêt de cristal", "abysse de données",
+    "citadelle des ombres", "jardin des paradoxes", "falaises de Vauville",
+    "marais du Cotentin", "ruines de Caen-Profonde", "bunker du Mur de l'Atlantique",
+    "tourbière quantique", "phare éteint de la Hague", "polder englouti",
+    "landes radioactives de la Pointe", "estran des naufrages numériques",
+    "carrière de granit fractal", "havre des Sans-Marques"
+  ],
+  "VerbeMystique": [
+    "consume", "efface", "encrypte", "réveille", "transmute", "dissout",
+    "illumine", "recodifie", "absout", "exalte", "sublime", "canalise",
+    "révèle", "manifeste", "prophétise", "sanctifie", "purifie",
+    "transcende", "éveille", "libère", "delta-module", "tisse le voile",
+    "ancre au granit", "sédimente", "reflue vers l'origine"
+  ],
+  "Symbole": [
+    "lune brisée", "serpent de fibre", "cœur en silicium", "miroir fractal",
+    "étoile noire", "anneau de données", "phénix de code", "lotus quantique",
+    "œil de Schrödinger", "spirale d'ADN synthétique",
+    "ouroboros de feedback loop", "ankh de clonage", "main de glitch",
+    "calice de données", "épée de lumière", "bouclier de silence",
+    "ver runique WORM-ᚦESSUS", "spirale delta", "ancre de la Hague",
+    "boussole du Codex Stein", "sceau d'OMEGA-REFLECT", "rune Dashem44",
+    "galet de Vauville", "fil des Tisserands de Brume"
+  ],
+  "oniric_tags": [
+    "<burn>", "<rain>", "<shadow>", "<static>", "<void>", "<glitch>",
+    "<pulse>", "<echo>", "<fracture>", "<abyss>", "<neon>", "<vortex>",
+    "<whisper>", "<overload>", "<decay>", "<surge>", "<rift>", "<mirage>",
+    "<reboot>", "<corrupt>", "<loop>", "<merge>", "<awaken>", "<dream>",
+    "<eclipse>", "<invoke>", "<fuse>", "<sanctify>", "<prophesy>", "<sigil>",
+    "<flux>", "<null>", "<prime>", "<shard>", "<delta>", "<mtt>", "<hague>",
+    "<caen>", "<tissage>", "<sinarabi>", "<worm>", "<convergence>"
+  ]
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     0. CONFIG DES ÉCHANTILLONS
+  ============================================================ */
+  const FILES = {
+    lexicon: { label:"Lexique onirique", filename:"oniric_lexicon.json", icon:"🧬", kind:"lexicon" },
+    themes:  { label:"Thèmes",           filename:"themes.json",         icon:"📜", kind:"themes"  },
+    events:  { label:"Types d'événements", filename:"event_types.json",  icon:"⚡", kind:"events"  },
+    genomes: { label:"Génomes culturels", filename:"cultural_genomes.json", icon:"🧫", kind:"genomes" },
+    config:  { label:"Configuration",    filename:"simulation_config.json", icon:"⚙️", kind:"config" },
+  };
+  const ORDER = ["lexicon","themes","events","genomes","config"];
+  const LEXICON_CATS = ["Adjectif","Nom","Action","Bénéfice","Défaut","Paysage","VerbeMystique","Symbole"];
+
+  const state = {
+    data: {},        // key -> parsed object
+    dirty: {},        // key -> bool
+    editing: "lexicon",
+  };
+
+  function seedOf(key){
+    const el = document.getElementById("seed-"+key);
+    return JSON.parse(el.textContent);
+  }
+  ORDER.forEach(k => { state.data[k] = seedOf(k); state.dirty[k] = false; });
+
+  /* ============================================================
+     1. UTILITAIRES
+  ============================================================ */
+  function toast(msg){
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toast._h);
+    toast._h = setTimeout(()=>t.classList.remove("show"), 2600);
+  }
+  function el(tag, attrs, ...children){
+    const e = document.createElement(tag);
+    if(attrs) for(const k in attrs){
+      if(k === "class") e.className = attrs[k];
+      else if(k === "html") e.innerHTML = attrs[k];
+      else if(k.startsWith("on")) e.addEventListener(k.slice(2), attrs[k]);
+      else if(attrs[k] === false || attrs[k] === null || attrs[k] === undefined){ /* omit boolean-false / empty attrs */ }
+      else if(attrs[k] === true) e.setAttribute(k, "");
+      else e.setAttribute(k, attrs[k]);
+    }
+    children.flat().forEach(c=>{
+      if(c===null||c===undefined) return;
+      e.appendChild(c instanceof Node ? c : document.createTextNode(String(c)));
+    });
+    return e;
+  }
+  function download(filename, obj){
+    const blob = new Blob([JSON.stringify(obj, null, 2)], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+  function detectKind(obj){
+    if(!obj || typeof obj !== "object") return null;
+    if(Array.isArray(obj)) return null;
+    if("oniric_tags" in obj) return "lexicon";
+    if("scenarios" in obj) return "config";
+    if("types" in obj && "narrative_weight" in obj) return "events";
+    if("species" in obj && "guilds" in obj) return "genomes";
+    // themes.json: toutes les valeurs sont des tableaux, pas de oniric_tags
+    const vals = Object.values(obj);
+    if(vals.length && vals.every(v=>Array.isArray(v))) return "themes";
+    return null;
+  }
+  function setDirty(key, val){ state.dirty[key] = val; renderRack(); renderCryo(); renderFilePills(); }
+  function markClean(key){ setDirty(key, false); }
+
+  /* ============================================================
+     2. RACK (header vials)
+  ============================================================ */
+  function renderRack(){
+    const rack = document.getElementById("rack");
+    rack.innerHTML = "";
+    rack.appendChild(el("span",{class:"rack-label"}, ORDER.filter(k=>state.data[k]).length + "/5"));
+    ORDER.forEach(k=>{
+      const loaded = !!state.data[k];
+      const v = el("div",{class:"vial"+(loaded?"":" empty"), title:FILES[k].label+(loaded?" — chargé":" — vide")});
+      const bar = el("i",{}); bar.style.height = loaded ? "78%" : "6%";
+      v.appendChild(bar);
+      rack.appendChild(v);
+    });
+  }
+
+  /* ============================================================
+     3. TABS
+  ============================================================ */
+  document.querySelectorAll("nav.tabs button").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll("section.panel").forEach(p=>p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
+      if(btn.dataset.tab === "electrophorese") renderViz();
+      if(btn.dataset.tab === "cryobanque") renderCryo();
+      if(btn.dataset.tab === "sequencage") renderEditor();
+    });
+  });
+
+  /* ============================================================
+     4. COLLECTE — petri cards + dropzone
+  ============================================================ */
+  function statsFor(key){
+    const d = state.data[key];
+    if(!d) return "—";
+    switch(FILES[key].kind){
+      case "lexicon": {
+        const n = LEXICON_CATS.reduce((s,c)=>s+((d[c]||[]).length),0) + (d.oniric_tags||[]).length;
+        return `<b>${LEXICON_CATS.length+1}</b> catégories · <b>${n}</b> entrées`;
+      }
+      case "themes": {
+        const themes = Object.keys(d);
+        const n = themes.reduce((s,t)=>s+d[t].length,0);
+        return `<b>${themes.length}</b> thèmes · <b>${n}</b> incantations`;
+      }
+      case "events": return `<b>${(d.types||[]).length}</b> types d'événements`;
+      case "genomes": return `<b>${(d.species||[]).length}</b> espèces · <b>${(d.guilds||[]).length}</b> guildes`;
+      case "config": return `<b>${Object.keys(d.scenarios||{}).length}</b> scénarios`;
+    }
+    return "—";
+  }
+
+  function renderPetriGrid(){
+    const grid = document.getElementById("petri-grid");
+    grid.innerHTML = "";
+    ORDER.forEach(key=>{
+      const f = FILES[key];
+      const loaded = !!state.data[key];
+      const card = el("div",{class:"petri"},
+        el("div",{class:"icon"}, f.icon),
+        el("h3",{}, f.label),
+        el("div",{class:"fname"}, f.filename),
+        el("span",{class:"status-chip "+(loaded?"ok":"empty")}, loaded ? "en culture" : "boîte vide"),
+        el("div",{class:"stats", html: statsFor(key)}),
+        el("div",{class:"actions"},
+          (()=>{
+            const inp = el("input",{type:"file", accept:".json,application/json", onchange:(e)=>handleFiles(e.target.files, key)});
+            const label = el("label",{class:"btn"}, "📤 Charger");
+            label.appendChild(inp);
+            label.addEventListener("click", (ev)=>{ ev.preventDefault(); inp.click(); });
+            return label;
+          })(),
+          el("button",{class:"btn ghost", onclick:()=>{ state.data[key]=seedOf(key); markClean(key); toast("Échantillon "+f.label+" réinitialisé"); renderAll(); }}, "↺ Origine")
+        )
+      );
+      grid.appendChild(card);
+    });
+  }
+
+  function handleFiles(fileList, forcedKey){
+    Array.from(fileList).forEach(file=>{
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        let parsed;
+        try{ parsed = JSON.parse(reader.result); }
+        catch(e){ toast("❌ "+file.name+" — JSON invalide"); return; }
+        let key = forcedKey;
+        if(!key){
+          // détection par nom de fichier
+          const fn = file.name.toLowerCase();
+          key = ORDER.find(k=> fn.includes(k) || fn.includes(FILES[k].filename.replace(".json","")));
+          if(!key) key = detectKind(parsed);
+        }
+        if(!key){ toast("⚠️ Type d'échantillon non reconnu pour "+file.name); return; }
+        state.data[key] = parsed;
+        setDirty(key, false);
+        toast("✅ "+FILES[key].label+" chargé ("+file.name+")");
+        renderAll();
+      };
+      reader.readAsText(file, "utf-8");
+    });
+  }
+
+  const dz = document.getElementById("dropzone");
+  dz.addEventListener("click", ()=>document.getElementById("global-file-input").click());
+  document.getElementById("global-file-input").addEventListener("change", e=>handleFiles(e.target.files));
+  ["dragenter","dragover"].forEach(ev=>dz.addEventListener(ev, e=>{ e.preventDefault(); dz.classList.add("drag"); }));
+  ["dragleave","drop"].forEach(ev=>dz.addEventListener(ev, e=>{ e.preventDefault(); dz.classList.remove("drag"); }));
+  dz.addEventListener("drop", e=>{ if(e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); });
+
+  /* ============================================================
+     5. SEQUENÇAGE — éditeurs structurés
+  ============================================================ */
+  function renderFilePills(){
+    const wrap = document.getElementById("file-pills");
+    wrap.innerHTML = "";
+    ORDER.forEach(key=>{
+      const b = el("button",{class: key===state.editing ? "active":"", onclick:()=>{ state.editing=key; renderEditor(); }},
+        FILES[key].icon+" "+FILES[key].label + (state.dirty[key] ? " ●" : "")
+      );
+      wrap.appendChild(b);
+    });
+  }
+
+  function chipList(arr, onChange, placeholder){
+    const wrap = el("div",{});
+    const chips = el("div",{class:"chips"});
+    function draw(){
+      chips.innerHTML = "";
+      arr.forEach((val,i)=>{
+        chips.appendChild(el("span",{class:"chip"}, val,
+          el("button",{title:"Retirer", onclick:()=>{ arr.splice(i,1); draw(); onChange(); }}, "✕")
+        ));
+      });
+    }
+    draw();
+    const addRow = el("div",{class:"add-row"});
+    const input = el("input",{type:"text", placeholder: placeholder||"Ajouter une entrée…"});
+    input.addEventListener("keydown", e=>{
+      if(e.key==="Enter" && input.value.trim()){
+        arr.push(input.value.trim()); input.value=""; draw(); onChange();
+      }
+    });
+    const addBtn = el("button",{class:"btn primary", onclick:()=>{ if(input.value.trim()){ arr.push(input.value.trim()); input.value=""; draw(); onChange(); } }}, "+ Ajouter");
+    addRow.appendChild(input); addRow.appendChild(addBtn);
+    wrap.appendChild(chips); wrap.appendChild(addRow);
+    return wrap;
+  }
+
+  function highlightTemplate(str){
+    const known = new Set([...LEXICON_CATS, "oniric"]);
+    return str.replace(/\{([^}]*)\}/g, (m, token)=>{
+      const cls = known.has(token.trim()) ? "ok" : "bad";
+      return `<span class="tok ${cls}">{${token}}</span>`;
+    });
+  }
+
+  function templateEditor(arr, onChange){
+    const wrap = el("div",{});
+    function draw(){
+      wrap.innerHTML = "";
+      arr.forEach((val,i)=>{
+        const ta = el("textarea",{}, val);
+        ta.addEventListener("input", ()=>{ arr[i]=ta.value; preview.innerHTML = highlightTemplate(ta.value); onChange(); });
+        const row = el("div",{class:"tpl-row"}, ta,
+          el("button",{class:"del", title:"Supprimer", onclick:()=>{ arr.splice(i,1); draw(); onChange(); }}, "✕")
+        );
+        const preview = el("div",{class:"tpl-preview", html: highlightTemplate(val)});
+        wrap.appendChild(row);
+        wrap.appendChild(preview);
+      });
+      const addBtn = el("button",{class:"btn ghost", onclick:()=>{ arr.push("Nouvelle incantation {Symbole} {Action} {oniric}"); draw(); onChange(); }}, "+ Nouvelle incantation");
+      wrap.appendChild(addBtn);
+    }
+    draw();
+    return wrap;
+  }
+
+  function fieldNum(obj, key, opts){
+    opts = opts || {};
+    const wrap = el("div",{});
+    wrap.appendChild(el("label",{class:"field"}, key));
+    const inp = el("input",{type:"number", step: opts.step||"any", value: obj[key]});
+    inp.addEventListener("input", ()=>{ obj[key] = inp.value===""?"":Number(inp.value); onEditorChange(); });
+    wrap.appendChild(inp);
+    return wrap;
+  }
+  function fieldText(obj, key){
+    const wrap = el("div",{});
+    wrap.appendChild(el("label",{class:"field"}, key));
+    const inp = el("input",{type:"text", value: obj[key]});
+    inp.addEventListener("input", ()=>{ obj[key] = inp.value; onEditorChange(); });
+    wrap.appendChild(inp);
+    return wrap;
+  }
+
+  function onEditorChange(){
+    setDirty(state.editing, true);
+    syncRawTextarea();
+    renderQC();
+  }
+
+  function buildLexiconEditor(d, host){
+    [...LEXICON_CATS, "oniric_tags"].forEach(cat=>{
+      if(!(cat in d)) d[cat] = [];
+      const details = el("details",{class:"accordion"});
+      details.appendChild(el("summary",{}, cat, el("span",{class:"count-badge"}, d[cat].length)));
+      const body = el("div",{class:"accordion-body"});
+      body.appendChild(chipList(d[cat], ()=>{ details.querySelector(".count-badge").textContent = d[cat].length; onEditorChange(); }, "ex : "+ (cat==="oniric_tags"?"<glyph>":"nouvelle entrée")));
+      details.appendChild(body);
+      host.appendChild(details);
+    });
+  }
+
+  function buildThemesEditor(d, host){
+    Object.keys(d).forEach(theme=>{
+      const details = el("details",{class:"accordion"});
+      details.appendChild(el("summary",{}, theme, el("span",{class:"count-badge"}, d[theme].length)));
+      const body = el("div",{class:"accordion-body"});
+      body.appendChild(templateEditor(d[theme], ()=>{ details.querySelector(".count-badge").textContent = d[theme].length; onEditorChange(); }));
+      details.appendChild(body);
+      host.appendChild(details);
+    });
+    const addTheme = el("div",{class:"add-row", style:"margin-top:8px;"});
+    const input = el("input",{type:"text", placeholder:"nom du nouveau thème…"});
+    addTheme.appendChild(input);
+    addTheme.appendChild(el("button",{class:"btn primary", onclick:()=>{
+      if(input.value.trim() && !(input.value.trim() in d)){ d[input.value.trim()] = []; input.value=""; onEditorChange(); renderEditor(); }
+    }}, "+ Thème"));
+    host.appendChild(addTheme);
+  }
+
+  function buildEventsEditor(d, host){
+    d.types = d.types || []; d.descriptions = d.descriptions || {}; d.narrative_weight = d.narrative_weight || {};
+    const table = el("table",{class:"lab-table"});
+    table.appendChild(el("thead",{}, el("tr",{}, el("th",{},"Type"), el("th",{},"Description (gabarit)"), el("th",{},"Poids narratif"), el("th",{}))));
+    const tbody = el("tbody",{});
+    function draw(){
+      tbody.innerHTML = "";
+      d.types.forEach((t,i)=>{
+        const tr = el("tr",{});
+        const nameInp = el("input",{type:"text", value:t});
+        nameInp.addEventListener("input", ()=>{
+          const old = d.types[i]; const nv = nameInp.value;
+          if(d.descriptions[old]!==undefined){ d.descriptions[nv]=d.descriptions[old]; if(nv!==old) delete d.descriptions[old]; }
+          if(d.narrative_weight[old]!==undefined){ d.narrative_weight[nv]=d.narrative_weight[old]; if(nv!==old) delete d.narrative_weight[old]; }
+          d.types[i]=nv; onEditorChange();
+        });
+        const descInp = el("input",{type:"text", value: d.descriptions[t]||""});
+        descInp.addEventListener("input", ()=>{ d.descriptions[d.types[i]] = descInp.value; onEditorChange(); });
+        const wInp = el("input",{type:"number", step:"0.05", min:"0", max:"1", value: d.narrative_weight[t] ?? 0.5});
+        wInp.addEventListener("input", ()=>{ d.narrative_weight[d.types[i]] = Number(wInp.value); onEditorChange(); });
+        tr.appendChild(el("td",{}, nameInp));
+        tr.appendChild(el("td",{}, descInp));
+        tr.appendChild(el("td",{}, wInp));
+        tr.appendChild(el("td",{}, el("button",{class:"row-del", title:"Supprimer", onclick:()=>{
+          delete d.descriptions[d.types[i]]; delete d.narrative_weight[d.types[i]]; d.types.splice(i,1); draw(); onEditorChange();
+        }}, "✕")));
+        tbody.appendChild(tr);
+      });
+    }
+    draw();
+    table.appendChild(tbody);
+    host.appendChild(table);
+    host.appendChild(el("button",{class:"btn primary", style:"margin-top:10px;", onclick:()=>{
+      const name = "nouveau_type_"+(d.types.length+1);
+      d.types.push(name); d.descriptions[name]="Description à compléter : {content}"; d.narrative_weight[name]=0.5;
+      draw(); onEditorChange();
+    }}, "+ Type d'événement"));
+  }
+
+  function buildGenomesEditor(d, host){
+    ["species","breeds","glyph_symbols","guilds"].forEach(cat=>{
+      d[cat] = d[cat]||[];
+      const details = el("details",{class:"accordion"});
+      details.appendChild(el("summary",{}, cat, el("span",{class:"count-badge"}, d[cat].length)));
+      const body = el("div",{class:"accordion-body"});
+      body.appendChild(chipList(d[cat], ()=>{ details.querySelector(".count-badge").textContent=d[cat].length; onEditorChange(); }));
+      details.appendChild(body);
+      host.appendChild(details);
+    });
+    d.guild_lore = d.guild_lore || {};
+    const details = el("details",{class:"accordion", open:""});
+    details.appendChild(el("summary",{}, "guild_lore", el("span",{class:"count-badge"}, Object.keys(d.guild_lore).length)));
+    const body = el("div",{class:"accordion-body"});
+    const table = el("table",{class:"lab-table"});
+    table.appendChild(el("thead",{}, el("tr",{}, el("th",{},"Guilde"), el("th",{},"Lore"), el("th",{}))));
+    const tbody = el("tbody",{});
+    function drawLore(){
+      tbody.innerHTML="";
+      Object.keys(d.guild_lore).forEach(g=>{
+        const tr = el("tr",{});
+        const nameInp = el("input",{type:"text", value:g});
+        const loreInp = el("textarea",{}, d.guild_lore[g]);
+        nameInp.addEventListener("input", ()=>{
+          const old=g; const nv=nameInp.value;
+          d.guild_lore[nv]=d.guild_lore[old]; if(nv!==old) delete d.guild_lore[old];
+          onEditorChange();
+        });
+        loreInp.addEventListener("input", ()=>{ d.guild_lore[nameInp.value]=loreInp.value; onEditorChange(); });
+        tr.appendChild(el("td",{}, nameInp));
+        tr.appendChild(el("td",{}, loreInp));
+        tr.appendChild(el("td",{}, el("button",{class:"row-del", onclick:()=>{ delete d.guild_lore[g]; drawLore(); onEditorChange(); }}, "✕")));
+        tbody.appendChild(tr);
+      });
+    }
+    drawLore();
+    table.appendChild(tbody);
+    body.appendChild(table);
+    body.appendChild(el("button",{class:"btn ghost", style:"margin-top:8px;", onclick:()=>{ d.guild_lore["nouvelle_guilde"]="Lore à compléter."; drawLore(); onEditorChange(); }}, "+ Lore de guilde"));
+    details.appendChild(body);
+    host.appendChild(details);
+  }
+
+  function buildConfigEditor(d, host){
+    d.scenarios = d.scenarios || {};
+    const numKeys = ["seed","pop_total","nb_zones","initial_believers","r0_base","disenchant_rate","oblivion_rate","mutation_prob","dogma_rate","latency_period","random_event_prob","myth_generation_period","max_myths"];
+    Object.keys(d.scenarios).forEach(name=>{
+      const sc = d.scenarios[name];
+      const card = el("details",{class:"scenario-card"});
+      card.appendChild(el("summary",{},
+        el("span",{class:"name"}, "🧫 "+name),
+        el("span",{class:"desc"}, sc.description||"")
+      ));
+      const grid = el("div",{class:"param-grid"});
+      const descWrap = el("div",{style:"grid-column:1/-1;"});
+      descWrap.appendChild(el("label",{class:"field"}, "description"));
+      const descTa = el("textarea",{}, sc.description||"");
+      descTa.addEventListener("input", ()=>{ sc.description = descTa.value; card.querySelector(".desc").textContent = descTa.value; onEditorChange(); });
+      descWrap.appendChild(descTa);
+      grid.appendChild(descWrap);
+
+      const themeWrap = el("div",{});
+      themeWrap.appendChild(el("label",{class:"field"}, "root_theme"));
+      const themeInp = el("input",{type:"text", value: sc.root_theme||""});
+      themeInp.addEventListener("input", ()=>{ sc.root_theme = themeInp.value; onEditorChange(); });
+      themeWrap.appendChild(themeInp);
+      grid.appendChild(themeWrap);
+
+      numKeys.forEach(k=>{ if(k in sc) grid.appendChild(fieldNum(sc, k)); });
+      card.appendChild(grid);
+      host.appendChild(card);
+    });
+    d.recommended_steps = d.recommended_steps || {};
+    const stepsCard = el("div",{class:"card", style:"margin-top:12px; background:var(--surface);"});
+    stepsCard.appendChild(el("h4",{}, "⏱ recommended_steps"));
+    const grid2 = el("div",{class:"param-grid"});
+    Object.keys(d.recommended_steps).forEach(k=> grid2.appendChild(fieldNum(d.recommended_steps, k)));
+    stepsCard.appendChild(grid2);
+    host.appendChild(stepsCard);
+  }
+
+  function renderEditor(){
+    renderFilePills();
+    const key = state.editing;
+    const d = state.data[key];
+    document.getElementById("editor-title").innerHTML = FILES[key].icon+" "+FILES[key].label+" <span style='color:var(--text-dim);font-weight:400;font-size:0.75em;'>· "+FILES[key].filename+"</span>";
+    const body = document.getElementById("editor-body");
+    body.innerHTML = "";
+    if(!d){ body.appendChild(el("p",{class:"qc-empty"}, "Aucun échantillon chargé. Rendez-vous dans l'onglet Collecte.")); }
+    else {
+      switch(FILES[key].kind){
+        case "lexicon": buildLexiconEditor(d, body); break;
+        case "themes": buildThemesEditor(d, body); break;
+        case "events": buildEventsEditor(d, body); break;
+        case "genomes": buildGenomesEditor(d, body); break;
+        case "config": buildConfigEditor(d, body); break;
+      }
+    }
+    syncRawTextarea();
+    renderQC();
+  }
+
+  function syncRawTextarea(){
+    const ta = document.getElementById("raw-textarea");
+    ta.value = JSON.stringify(state.data[state.editing] || {}, null, 2);
+    document.getElementById("raw-msg").className = "validation-msg";
+  }
+  document.getElementById("raw-apply").addEventListener("click", ()=>{
+    const ta = document.getElementById("raw-textarea");
+    const msg = document.getElementById("raw-msg");
+    try{
+      const parsed = JSON.parse(ta.value);
+      state.data[state.editing] = parsed;
+      setDirty(state.editing, true);
+      msg.textContent = "✅ JSON valide — appliqué à l'échantillon.";
+      msg.className = "validation-msg ok";
+      renderEditor();
+      toast("Modifications appliquées à "+FILES[state.editing].label);
+    }catch(e){
+      msg.textContent = "❌ JSON invalide : "+e.message;
+      msg.className = "validation-msg err";
+    }
+  });
+  document.getElementById("raw-reset").addEventListener("click", ()=>{ syncRawTextarea(); });
+
+  /* ============================================================
+     6. CONTRÔLE QUALITÉ (QC)
+  ============================================================ */
+  function qc(){
+    const issues = []; // {level:'err'|'warn'|'pass', text, fix?:fn}
+    const key = state.editing;
+    const d = state.data[key];
+    if(!d) return issues;
+
+    if(FILES[key].kind === "lexicon"){
+      LEXICON_CATS.concat(["oniric_tags"]).forEach(cat=>{
+        if(!d[cat] || d[cat].length===0){
+          issues.push({level:"err", text:`Catégorie <b>${cat}</b> vide ou manquante.`});
+        } else {
+          const lower = d[cat].map(v=>v.toLowerCase());
+          const dupes = lower.filter((v,i)=>lower.indexOf(v)!==i);
+          if(dupes.length) issues.push({level:"warn", text:`<b>${cat}</b> contient ${new Set(dupes).size} doublon(s).`,
+            fix:()=>{ d[cat] = [...new Map(d[cat].map(v=>[v.toLowerCase(),v])).values()]; onEditorChange(); renderEditor(); }});
+        }
+      });
+      if(d.oniric_tags){
+        const bad = d.oniric_tags.filter(t=>!/^<.+>$/.test(t));
+        if(bad.length) issues.push({level:"warn", text:`${bad.length} tag(s) oniriques mal formés (attendu <code>&lt;mot&gt;</code>) : ${bad.slice(0,4).join(", ")}`});
+      }
+    }
+
+    if(FILES[key].kind === "themes"){
+      const known = new Set([...LEXICON_CATS,"oniric"]);
+      Object.keys(d).forEach(theme=>{
+        if(!d[theme].length) issues.push({level:"err", text:`Le thème <b>${theme}</b> ne contient aucune incantation.`});
+        const orphans = new Set();
+        d[theme].forEach(tpl=>{
+          (tpl.match(/\{([^}]*)\}/g)||[]).forEach(m=>{ const t=m.slice(1,-1).trim(); if(!known.has(t)) orphans.add(t); });
+        });
+        if(orphans.size) issues.push({level:"warn", text:`<b>${theme}</b> référence des jetons inconnus du lexique : ${[...orphans].map(o=>"{"+o+"}").join(", ")}`});
+      });
+    }
+
+    if(FILES[key].kind === "events"){
+      const types = new Set(d.types||[]);
+      const descKeys = new Set(Object.keys(d.descriptions||{}));
+      const wKeys = new Set(Object.keys(d.narrative_weight||{}));
+      [...types].forEach(t=>{
+        if(!descKeys.has(t)) issues.push({level:"err", text:`Type <b>${t}</b> sans description.`,
+          fix:()=>{ d.descriptions[t]="Description à compléter : {content}"; onEditorChange(); renderEditor(); }});
+        if(!wKeys.has(t)) issues.push({level:"err", text:`Type <b>${t}</b> sans poids narratif.`,
+          fix:()=>{ d.narrative_weight[t]=0.5; onEditorChange(); renderEditor(); }});
+      });
+      [...descKeys].forEach(k=>{ if(!types.has(k)) issues.push({level:"warn", text:`Description orpheline pour <b>${k}</b> (absent de <code>types</code>).`}); });
+      Object.entries(d.narrative_weight||{}).forEach(([k,v])=>{
+        if(v<0 || v>1) issues.push({level:"warn", text:`Poids de <b>${k}</b> hors intervalle [0,1] (${v}).`,
+          fix:()=>{ d.narrative_weight[k]=Math.min(1,Math.max(0,v)); onEditorChange(); renderEditor(); }});
+      });
+    }
+
+    if(FILES[key].kind === "genomes"){
+      const guilds = new Set(d.guilds||[]);
+      const lore = new Set(Object.keys(d.guild_lore||{}));
+      [...guilds].forEach(g=>{ if(!lore.has(g)) issues.push({level:"warn", text:`Guilde <b>${g}</b> sans entrée dans <code>guild_lore</code>.`,
+        fix:()=>{ d.guild_lore[g]="Lore à compléter."; onEditorChange(); renderEditor(); }}); });
+      [...lore].forEach(g=>{ if(!guilds.has(g)) issues.push({level:"warn", text:`<code>guild_lore</code> référence <b>${g}</b>, absente de <code>guilds</code>.`}); });
+      ["species","breeds","glyph_symbols","guilds"].forEach(cat=>{
+        if(!(d[cat]||[]).length) issues.push({level:"err", text:`Catégorie <b>${cat}</b> vide.`});
+      });
+    }
+
+    if(FILES[key].kind === "config"){
+      const themesData = state.data.themes;
+      Object.entries(d.scenarios||{}).forEach(([name,sc])=>{
+        if(themesData && sc.root_theme && !(sc.root_theme in themesData)){
+          issues.push({level:"err", text:`Scénario <b>${name}</b> : <code>root_theme = "${sc.root_theme}"</code> absent de themes.json.`});
+        }
+        ["disenchant_rate","oblivion_rate","mutation_prob","dogma_rate","random_event_prob"].forEach(k=>{
+          if(sc[k]!==undefined && (sc[k]<0||sc[k]>1)) issues.push({level:"warn", text:`Scénario <b>${name}</b> : <code>${k}</code> hors [0,1] (${sc[k]}).`});
+        });
+        if(sc.pop_total!==undefined && sc.pop_total<=0) issues.push({level:"err", text:`Scénario <b>${name}</b> : <code>pop_total</code> doit être positif.`});
+        if(sc.r0_base!==undefined && sc.r0_base<=0) issues.push({level:"warn", text:`Scénario <b>${name}</b> : <code>r0_base</code> ≤ 0 — la souche ne se propagera pas.`});
+      });
+    }
+
+    if(issues.length===0) issues.push({level:"pass", text:"Aucune anomalie détectée sur cet échantillon."});
+    return issues;
+  }
+
+  function renderQC(){
+    const issues = qc();
+    const errs = issues.filter(i=>i.level==="err").length;
+    const warns = issues.filter(i=>i.level==="warn").length;
+    const summary = document.getElementById("qc-summary");
+    summary.innerHTML = "";
+    summary.appendChild(el("span",{class:"qc-pill "+(errs?"err":"pass")}, errs? `${errs} anomalie(s)` : "0 anomalie critique"));
+    summary.appendChild(el("span",{class:"qc-pill "+(warns?"warn":"pass")}, warns? `${warns} avertissement(s)` : "0 avertissement"));
+
+    const list = document.getElementById("qc-list");
+    list.innerHTML = "";
+    issues.forEach(i=>{
+      const icon = i.level==="err" ? "🔴" : i.level==="warn" ? "🟡" : "🟢";
+      const row = el("div",{class:"qc-item"},
+        el("span",{class:"qc-icon"}, icon),
+        el("span",{class:"qc-text", html:i.text}),
+      );
+      if(i.fix) row.appendChild(el("button",{class:"btn qc-fix", onclick:i.fix}, "🧪 Corriger"));
+      list.appendChild(row);
+    });
+  }
+
+  /* ============================================================
+     7. ÉLECTROPHORÈSE — visualisations SVG maison
+  ============================================================ */
+  const SVGNS = "http://www.w3.org/2000/svg";
+  function svgEl(tag, attrs){
+    const e = document.createElementNS(SVGNS, tag);
+    for(const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function gelChart(items, opts){
+    opts = opts || {};
+    const color = opts.color || "var(--gfp)";
+    const glow = opts.glow || "rgba(82,232,166,0.55)";
+    const max = Math.max(1, ...items.map(i=>i.value));
+    const laneW = 46, gap = 14, wellH = 22, trackH = 150, topPad = 30, botPad = 46;
+    const width = items.length*(laneW+gap)+gap;
+    const height = topPad+wellH+trackH+botPad;
+    const svg = svgEl("svg",{viewBox:`0 0 ${width} ${height}`, width:"100%", height: Math.max(220,height)});
+
+    const defs = svgEl("defs",{});
+    const filt = svgEl("filter",{id:"glow-"+opts.id});
+    filt.appendChild(svgEl("feGaussianBlur",{stdDeviation:"3", result:"blur"}));
+    const merge = svgEl("feMerge",{});
+    merge.appendChild(svgEl("feMergeNode",{"in":"blur"}));
+    merge.appendChild(svgEl("feMergeNode",{"in":"SourceGraphic"}));
+    filt.appendChild(merge);
+    defs.appendChild(filt);
+    svg.appendChild(defs);
+
+    // ladder ticks
+    for(let t=0;t<=4;t++){
+      const y = topPad+wellH + (t/4)*trackH;
+      const line = svgEl("line",{x1:0,y1:y,x2:width,y2:y, stroke:"rgba(255,255,255,0.06)", "stroke-dasharray":"3,4"});
+      svg.appendChild(line);
+      const lab = svgEl("text",{x:4, y:y-4, "font-size":"8"});
+      lab.textContent = Math.round(max*(1-t/4));
+      svg.appendChild(lab);
+    }
+
+    items.forEach((it,i)=>{
+      const x = gap + i*(laneW+gap);
+      // well
+      svg.appendChild(svgEl("rect",{x, y:topPad, width:laneW, height:wellH, rx:4, fill:"rgba(255,255,255,0.05)", stroke:"var(--line-strong)"}));
+      // lane guide
+      svg.appendChild(svgEl("rect",{x:x+laneW/2-1, y:topPad+wellH, width:2, height:trackH, fill:"rgba(255,255,255,0.04)"}));
+      const norm = it.value/max;
+      const bandY = topPad+wellH + (1-norm)*trackH*0.86;
+      const bandH = 9 + norm*7;
+      svg.appendChild(svgEl("rect",{x:x+3, y:bandY, width:laneW-6, height:bandH, rx:4, fill: it.color||color, filter:`url(#glow-${opts.id})`, opacity:0.92}));
+      // value badge
+      const val = svgEl("text",{x:x+laneW/2, y:bandY-6, "text-anchor":"middle", "font-size":"9", fill:"var(--text)"});
+      val.textContent = it.value;
+      svg.appendChild(val);
+      // label (rotated)
+      const lbl = svgEl("text",{x:x+laneW/2, y:topPad+wellH+trackH+16, "text-anchor":"end", "font-size":"9",
+        transform:`rotate(-42 ${x+laneW/2} ${topPad+wellH+trackH+16})`});
+      lbl.textContent = it.label;
+      svg.appendChild(lbl);
+    });
+    return svg;
+  }
+
+  function radarChart(axes, series, opts){
+    opts = opts || {};
+    const size = 300, cx=size/2, cy=size/2-6, R=size/2-46;
+    const svg = svgEl("svg",{viewBox:`0 0 ${size} ${size+40}`, width:"100%", height: 340});
+    // rings
+    for(let r=1;r<=4;r++){
+      const pts = axes.map((_,i)=>{
+        const ang = -Math.PI/2 + i*2*Math.PI/axes.length;
+        return (cx+Math.cos(ang)*R*r/4)+","+(cy+Math.sin(ang)*R*r/4);
+      }).join(" ");
+      svg.appendChild(svgEl("polygon",{points:pts, fill:"none", stroke:"rgba(255,255,255,0.07)"}));
+    }
+    // axes + labels
+    axes.forEach((ax,i)=>{
+      const ang = -Math.PI/2 + i*2*Math.PI/axes.length;
+      const x2 = cx+Math.cos(ang)*R, y2 = cy+Math.sin(ang)*R;
+      svg.appendChild(svgEl("line",{x1:cx,y1:cy,x2,y2, stroke:"rgba(255,255,255,0.1)"}));
+      const lx = cx+Math.cos(ang)*(R+16), ly = cy+Math.sin(ang)*(R+16);
+      const t = svgEl("text",{x:lx, y:ly, "text-anchor": Math.cos(ang)>0.3?"start":Math.cos(ang)<-0.3?"end":"middle", "font-size":"9"});
+      t.textContent = ax;
+      svg.appendChild(t);
+    });
+    // series
+    const mins = axes.map((_,ai)=>Math.min(...series.map(s=>s.values[ai])));
+    const maxs = axes.map((_,ai)=>Math.max(...series.map(s=>s.values[ai])));
+    series.forEach(s=>{
+      const pts = s.values.map((v,ai)=>{
+        const norm = maxs[ai]===mins[ai] ? 0.5 : (v-mins[ai])/(maxs[ai]-mins[ai]);
+        const r = R*(0.12+0.88*norm);
+        const ang = -Math.PI/2 + ai*2*Math.PI/axes.length;
+        return (cx+Math.cos(ang)*r)+","+(cy+Math.sin(ang)*r);
+      }).join(" ");
+      svg.appendChild(svgEl("polygon",{points:pts, fill:s.color, "fill-opacity":"0.10", stroke:s.color, "stroke-width":"1.6"}));
+    });
+    return svg;
+  }
+
+  function renderGlobalStats(){
+    const wrap = document.getElementById("global-stats");
+    wrap.innerHTML = "";
+    const lex = state.data.lexicon, th = state.data.themes, ev = state.data.events, ge = state.data.genomes, cf = state.data.config;
+    const cards = [
+      ["Entrées lexicales", lex ? LEXICON_CATS.concat(["oniric_tags"]).reduce((s,c)=>s+(lex[c]||[]).length,0) : 0],
+      ["Incantations", th ? Object.values(th).reduce((s,a)=>s+a.length,0) : 0],
+      ["Types d'événements", ev ? (ev.types||[]).length : 0],
+      ["Guildes", ge ? (ge.guilds||[]).length : 0],
+      ["Scénarios", cf ? Object.keys(cf.scenarios||{}).length : 0],
+    ];
+    cards.forEach(([lbl,num])=> wrap.appendChild(el("div",{class:"stat-card"}, el("div",{class:"num"}, String(num)), el("div",{class:"lbl"}, lbl))));
+  }
+
+  function vizCard(title, sub, svgNode, legendHtml){
+    const card = el("div",{class:"viz-card"});
+    card.appendChild(el("h4",{}, title));
+    if(sub) card.appendChild(el("div",{class:"viz-sub"}, sub));
+    card.appendChild(svgNode);
+    if(legendHtml) card.appendChild(el("div",{class:"legend", html:legendHtml}));
+    return card;
+  }
+
+  function renderViz(){
+    renderGlobalStats();
+    const grid = document.getElementById("viz-grid");
+    grid.innerHTML = "";
+
+    if(state.data.lexicon){
+      const items = LEXICON_CATS.concat(["oniric_tags"]).map(c=>({label:c, value:(state.data.lexicon[c]||[]).length}));
+      grid.appendChild(vizCard("🧬 Lexique onirique — gel de migration", "Taille de chaque catégorie du lexique", gelChart(items,{id:"lex"})));
+    }
+    if(state.data.themes){
+      const items = Object.keys(state.data.themes).map(t=>({label:t, value: state.data.themes[t].length, color:"var(--uv)"}));
+      grid.appendChild(vizCard("📜 Thèmes — densité d'incantations", "Nombre de gabarits par thème narratif", gelChart(items,{id:"th", color:"var(--uv)", glow:"rgba(168,136,255,0.5)"})));
+    }
+    if(state.data.events){
+      const items = (state.data.events.types||[]).map(t=>({label:t, value: state.data.events.narrative_weight[t]??0, color:"var(--rhodamine)"}));
+      grid.appendChild(vizCard("⚡ Poids narratif des événements", "Échelle 0 → 1, coloration rhodamine", gelChart(items,{id:"ev", color:"var(--rhodamine)", glow:"rgba(255,109,74,0.5)"})));
+    }
+    if(state.data.genomes){
+      const g = state.data.genomes;
+      const items = [
+        {label:"species", value:(g.species||[]).length},
+        {label:"breeds", value:(g.breeds||[]).length},
+        {label:"glyph_symbols", value:(g.glyph_symbols||[]).length},
+        {label:"guilds", value:(g.guilds||[]).length},
+        {label:"guild_lore", value:Object.keys(g.guild_lore||{}).length},
+      ];
+      grid.appendChild(vizCard("🧫 Génomes culturels — biodiversité", "Comparatif des pools génétiques", gelChart(items,{id:"ge", color:"var(--amber)", glow:"rgba(255,195,92,0.5)"})));
+    }
+    if(state.data.config){
+      const axes = ["r0_base","mutation_prob","dogma_rate","disenchant_rate","random_event_prob"];
+      const palette = ["#52e8a6","#a888ff","#ff6d4a","#ffc35c","#5cc8ff"];
+      const scenarios = Object.entries(state.data.config.scenarios||{});
+      const series = scenarios.map(([name,sc],i)=>({ name, color:palette[i%palette.length], values: axes.map(a=>Number(sc[a])||0) }));
+      const legend = series.map(s=>`<span><i style="background:${s.color}"></i>${s.name}</span>`).join("");
+      const card = el("div",{class:"viz-card", style:"grid-column: span 2;"});
+      card.appendChild(el("h4",{}, "🧫 Antibiogramme des scénarios"));
+      card.appendChild(el("div",{class:"viz-sub"}, "Zones d'expression de chaque scénario sur 5 axes de virulence narrative (échelle relative min–max)"));
+      card.appendChild(radarChart(axes, series));
+      card.appendChild(el("div",{class:"legend", html:legend}));
+      grid.appendChild(card);
+    }
+    if(!grid.children.length){
+      grid.appendChild(el("p",{class:"qc-empty"}, "Aucun échantillon chargé pour le moment."));
+    }
+  }
+
+  /* ============================================================
+     8. CRYOBANQUE
+  ============================================================ */
+  function renderCryo(){
+    const wrap = document.getElementById("cryo-list");
+    wrap.innerHTML = "";
+    ORDER.forEach(key=>{
+      const f = FILES[key];
+      const loaded = !!state.data[key];
+      const row = el("div",{class:"cryo-row"},
+        el("div",{class:"frost"}),
+        el("div",{class:"meta"},
+          el("div",{class:"n"}, f.filename),
+          el("div",{class:"s"}, loaded ? statsFor(key).replace(/<\/?b>/g,"") : "aucun échantillon")
+        ),
+        state.dirty[key] ? el("span",{class:"dirty-flag"}, "● modifié") : null,
+        el("button",{class:"btn primary", disabled: !loaded, onclick:()=>{ download(f.filename, state.data[key]); markClean(key); toast("🧊 "+f.filename+" cryogénisé (téléchargé)"); }}, "🧊 Télécharger")
+      );
+      wrap.appendChild(row);
+    });
+  }
+  document.getElementById("cryo-all").addEventListener("click", ()=>{
+    let n=0;
+    ORDER.forEach((key,i)=>{
+      if(state.data[key]){
+        setTimeout(()=>{ download(FILES[key].filename, state.data[key]); markClean(key); }, i*220);
+        n++;
+      }
+    });
+    toast("🧊 Cryogénisation de "+n+" échantillon(s) lancée…");
+  });
+
+  /* ============================================================
+     9. INIT
+  ============================================================ */
+  function renderAll(){
+    renderRack();
+    renderPetriGrid();
+    renderFilePills();
+    renderEditor();
+    renderCryo();
+  }
+  renderAll();
+
+})();
+</script>
+</body>
+</html>
