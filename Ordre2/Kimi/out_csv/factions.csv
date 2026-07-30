@@ -1,4 +1,3 @@
 faction_id,name,founder_id,founding_strain,created_at,member_count,alliance_count,color,rituals
-FAC-001,"Ô solipsiste résonance, sois c",1,M-001,7,3,2,#ffff88,"Ô corrompu satori, sois rematérialise... | Ô corrompu satori, sois rematérialise..."
-FAC-002,"Ô solipsiste résonance, sois b",3,FS-004,13,3,2,#e3ff89,"Ô solipsiste résonance, sois baptise... | Ô solipsiste résonance, sois baptise..."
-FAC-003,"Ô solipsiste résonance, sois b",8,FS-005,50,3,2,#f1ff88,"Ô solipsiste résonance, sois baptise... | Ô solipsiste résonance, sois baptise..."
+FAC-001,Que le épée de lumière sature,1,M-001,5,4,1,#ffd700,Le arbre de vie kabbalistique... | Le arbre de vie kabbalistique...
+FAC-002,Que le épée de lumière sature,385,MV-002,69,4,1,#ffd700,Que le épée de lumière... | Que le épée de lumière...

@@ -1,3 +1,6 @@
 parent_strain,child_strain
 M-001,MV-002
-MV-002,MV-003
+M-001,MV-003
+M-001,MV-004
+M-001,MV-005
+MV-005,MV-006

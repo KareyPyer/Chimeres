@@ -1,8 +1,4 @@
 event_id,event_type,timestamp,zone,description,affected_agents_count,affected_agents,impact
-EVT-001,faction_emergence,7,Marché_Souterrain,"🏛 ÉMERGENCE DE FACTION : Ô solipsiste résonance, sois c dans la zone Forum_Diffus",3,"1,2,18","{""faction_id"": ""FAC-001"", ""strain"": ""M-001"", ""members"": 3}"
-EVT-002,cultural_resonance,13,Sanctuaire_Reclus,🎵 RÉSONANCE CULTURELLE : MV-003 ∪ MV-002 → FS-004,3,"3,6,46","{""parent1"": ""MV-003"", ""parent2"": ""MV-002"", ""child"": ""FS-004""}"
-EVT-003,faction_emergence,13,Agora_Centrale,"🏛 ÉMERGENCE DE FACTION : Ô solipsiste résonance, sois b dans la zone Agora_Centrale",3,"3,6,46","{""faction_id"": ""FAC-002"", ""strain"": ""FS-004"", ""members"": 3}"
-EVT-004,narrative_eclipse,34,Carrefour_Nomade,🌑 ÉCLIPSE NARRATIVE : La souche MV-002 s'efface de la mémoire collective,1,134,"{""strain"": ""MV-002"", ""affected"": 1}"
-EVT-005,narrative_eclipse,49,Marché_Souterrain,🌑 ÉCLIPSE NARRATIVE : La souche M-001 s'efface de la mémoire collective,1,4,"{""strain"": ""M-001"", ""affected"": 1}"
-EVT-006,cultural_resonance,50,Carrefour_Nomade,🎵 RÉSONANCE CULTURELLE : FS-004 ∪ MV-002 → FS-005,3,"8,137,139","{""parent1"": ""FS-004"", ""parent2"": ""MV-002"", ""child"": ""FS-005""}"
-EVT-007,faction_emergence,50,Sanctuaire_Reclus,"🏛 ÉMERGENCE DE FACTION : Ô solipsiste résonance, sois b dans la zone Archives_Oubliées",3,"8,137,139","{""faction_id"": ""FAC-003"", ""strain"": ""FS-005"", ""members"": 3}"
+EVT-001,faction_emergence,5,Carrefour_Nomade,🏛 ÉMERGENCE DE FACTION : Que le épée de lumière sature dans la zone Forum_Diffus,4,"1,2,3,233","{""faction_id"": ""FAC-001"", ""strain"": ""M-001"", ""members"": 4}"
+EVT-002,faction_emergence,69,Archives_Oubliées,🏛 ÉMERGENCE DE FACTION : Que le épée de lumière sature dans la zone Marché_Souterrain,4,"385,388,390,391","{""faction_id"": ""FAC-002"", ""strain"": ""MV-002"", ""members"": 4}"
+EVT-003,narrative_eclipse,214,Archives_Oubliées,🌑 ÉCLIPSE NARRATIVE : La souche MV-006 s'efface de la mémoire collective,1,255,"{""strain"": ""MV-006"", ""affected"": 1}"
