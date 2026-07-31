@@ -1,6 +1,6 @@
 # Memetic Explorer — Corpus Vauvillensis / LFS
 
-Outil de DataViz + Data Mining pour les sorties de ton simulateur épidémio-mémétique
+Outil de DataViz + Data Mining pour les sorties du simulateur épidémio-mémétique
 (agents, souches, factions, artefacts, mythes, événements narratifs).
 
 ## Installation
