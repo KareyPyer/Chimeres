@@ -1,0 +1,9 @@
+strain_id,parent_id,generation,glyph_symbol,color,contagion_power,aesthetic_score,mantra,theme
+M-001,,0,spiral,#bcff45,0.96,0.5850750693471092,"Ô foudroyant totem, sois transmute par le rite ancien.",rituel
+MV-002,M-001,1,spiral,#ffe326,0.9843200000000001,0.6266666666666667,"Ô foudroyant totem, sois encrypte par le rite ancien.",rituel
+MV-003,M-001,1,claviform,#d7ffb2,0.9794449290009841,0.6012756718801253,"Ô foudroyant totem, sois canalise par le rite ancien.",rituel
+MV-004,M-001,1,penniform,#bcff45,0.98304,0.6200000000000001,Le couronne de glitches et le cœur dansent le rite cybernétique. <whisper>,rituel
+MV-005,M-001,1,penniform,#ccfecf,0.985053648167806,0.63048775087399,Le crâne de serveur et le rêve dansent le rite plasmique. <merge>,rituel
+MV-006,M-001,1,spiral,#bcff45,0.9830018837012214,0.6198014776105278,Le fleur de vie en LEDs et le totem dansent le rite spectral. <burn>,rituel
+MV-007,M-001,1,penniform,#bcff45,1.0032954299634818,0.7254970310598015,"Ô éolien totem, sois occulte par le rite ancien.",rituel
+MV-008,MV-007,2,penniform,#bcff45,1.049447019741802,0.73,"Ô éolien totem, sois encrypte par le rite ancien.",rituel
