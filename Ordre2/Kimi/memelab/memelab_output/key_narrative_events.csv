@@ -1,0 +1,66 @@
+agent_id,timestamp,event_type,content,impact
+1,11,disenchantment,Désenchantement à t=11,0.7
+2,49,disenchantment,Désenchantement à t=49,0.7
+3,4,mutation,Mutation: M-001 → MV-002,0.4
+3,34,disenchantment,Désenchantement à t=34,0.7
+5,34,disenchantment,Désenchantement à t=34,0.7
+6,52,disenchantment,Désenchantement à t=52,0.7
+7,38,disenchantment,Désenchantement à t=38,0.7
+8,38,disenchantment,Désenchantement à t=38,0.7
+9,73,disenchantment,Désenchantement à t=73,0.7
+10,47,disenchantment,Désenchantement à t=47,0.7
+12,43,disenchantment,Désenchantement à t=43,0.7
+14,47,disenchantment,Désenchantement à t=47,0.7
+16,17,disenchantment,Désenchantement à t=17,0.7
+17,15,disenchantment,Désenchantement à t=15,0.7
+18,44,narrative_eclipse,La souche MV-002 s'efface,0.8
+20,72,disenchantment,Désenchantement à t=72,0.7
+21,53,disenchantment,Désenchantement à t=53,0.7
+22,99,disenchantment,Désenchantement à t=99,0.7
+23,89,disenchantment,Désenchantement à t=89,0.7
+24,59,disenchantment,Désenchantement à t=59,0.7
+25,94,disenchantment,Désenchantement à t=94,0.7
+27,93,disenchantment,Désenchantement à t=93,0.7
+29,87,disenchantment,Désenchantement à t=87,0.7
+31,52,disenchantment,Désenchantement à t=52,0.7
+33,51,mutation,Mutation: M-001 → MV-003,0.4
+33,55,narrative_eclipse,La souche MV-003 s'efface,0.8
+37,30,disenchantment,Désenchantement à t=30,0.7
+38,44,narrative_eclipse,La souche MV-002 s'efface,0.8
+39,94,disenchantment,Désenchantement à t=94,0.7
+40,46,disenchantment,Désenchantement à t=46,0.7
+41,97,disenchantment,Désenchantement à t=97,0.7
+42,46,disenchantment,Désenchantement à t=46,0.7
+43,64,disenchantment,Désenchantement à t=64,0.7
+45,68,disenchantment,Désenchantement à t=68,0.7
+47,82,disenchantment,Désenchantement à t=82,0.7
+48,71,disenchantment,Désenchantement à t=71,0.7
+49,37,disenchantment,Désenchantement à t=37,0.7
+50,73,disenchantment,Désenchantement à t=73,0.7
+51,82,disenchantment,Désenchantement à t=82,0.7
+52,70,disenchantment,Désenchantement à t=70,0.7
+53,60,disenchantment,Désenchantement à t=60,0.7
+54,51,disenchantment,Désenchantement à t=51,0.7
+56,85,disenchantment,Désenchantement à t=85,0.7
+57,80,disenchantment,Désenchantement à t=80,0.7
+58,50,disenchantment,Désenchantement à t=50,0.7
+59,63,disenchantment,Désenchantement à t=63,0.7
+60,16,disenchantment,Désenchantement à t=16,0.7
+61,30,disenchantment,Désenchantement à t=30,0.7
+63,44,narrative_eclipse,La souche MV-002 s'efface,0.8
+64,37,disenchantment,Désenchantement à t=37,0.7
+65,44,narrative_eclipse,La souche MV-002 s'efface,0.8
+66,76,disenchantment,Désenchantement à t=76,0.7
+67,36,disenchantment,Désenchantement à t=36,0.7
+68,97,disenchantment,Désenchantement à t=97,0.7
+69,41,disenchantment,Désenchantement à t=41,0.7
+70,46,disenchantment,Désenchantement à t=46,0.7
+71,67,disenchantment,Désenchantement à t=67,0.7
+72,46,disenchantment,Désenchantement à t=46,0.7
+73,46,disenchantment,Désenchantement à t=46,0.7
+74,74,disenchantment,Désenchantement à t=74,0.7
+75,94,disenchantment,Désenchantement à t=94,0.7
+76,18,disenchantment,Désenchantement à t=18,0.7
+78,30,disenchantment,Désenchantement à t=30,0.7
+79,15,disenchantment,Désenchantement à t=15,0.7
+80,88,disenchantment,Désenchantement à t=88,0.7
