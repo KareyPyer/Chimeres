@@ -1,4 +1,4 @@
-La visualisation par défaut (type "graphe de forces" ou *hairball*) a tendance à écraser la dimension **temporelle** et **hiérarchique** de votre modèle. Pour révéler la *propagation mémétique*, il faut utiliser des requêtes Cypher qui isolent ces dynamiques, puis appliquer un stylissage adapté dans Neo4j Browser ou Bloom.
+La visualisation par défaut (type "graphe de forces" ou *hairball*) a tendance à écraser la dimension **temporelle** et **hiérarchique** du modèle. Pour révéler la *propagation mémétique*, il faut utiliser des requêtes Cypher qui isolent ces dynamiques, puis appliquer un stylissage adapté dans Neo4j Browser ou Bloom.
 
 Voici plusieurs commandes Cypher conçues pour extraire et visualiser les différentes facettes de la propagation mémétique, basées sur votre schéma (`CARRIES` avec `since`, `MUTATED_INTO`, `LOCATED_IN`, `MANIFESTS`).
 
